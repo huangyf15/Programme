@@ -1,0 +1,146 @@
+#======================================
+# Author: Yunfan Huang
+# Institute: Tsinghua University
+# Updated: Feb 28, 2019
+# Notice:
+#    Input "make mod" before "make"!
+#======================================
+CODESPEED = DEBUG
+
+PLATFORM = YUNFAN
+
+COMPILER = GXX
+
+MAKEDIR = PATH\\TO\\MAKEDIR
+#======================================
+# Directory aliases
+TARGET = $(BINDIR)\\TARGETNAME
+BINDIR = $(MAKEDIR)\\bin
+OBJDIR = $(MAKEDIR)\\obj
+MODDIR = $(OBJDIR)
+SRCDIR = $(MAKEDIR)\\src
+MDSDIR = $(MAKEDIR)\\modsrc
+
+#======================================
+# Platform and Compiler
+ifeq ($(PLATFORM), YUNFAN)
+
+MYLIB = 
+
+ifeq ($(COMPILER), INTEL)
+OPTLIB = 
+INCLUDE =
+LINK =
+F9 = ifort
+endif
+
+ifeq ($(COMPILER), GXX)
+OPTLIB =
+INCLUDE =
+LINK =
+F9 = gfortran
+endif
+
+endif
+#======================================
+# Files' aliases
+#- output src files' list
+SRC = $(wildcard $(SRCDIR)/*.f90)
+SRCLIST = $(notdir $(SRC))
+#- output *.f90 => *.o in the same dir
+#- % means operating on each one
+OBJLIST = \
+	$(patsubst %.f90,%.o,$(SRCLIST))
+#- output *.o => \\obj\\*.o
+SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
+#--------------------------------------
+#- output .mod in order
+# MOD = $(wildcard $(MODDIR)/*.mod)
+# MODSRC = $(wildcard $(MDSDIR)/*.f90)
+
+#-- IF needed, manually input in the
+#--   reference order of module .f90
+#--   (SET AS DEFAULT)
+MODLIST = xxx.mod yyy.mod
+MOD = $(MODLIST:%.mod=$(MODDIR)\\%.mod)
+MDSLIST = mod1_xxx.f90 \
+	mod2_yyy.f90 \
+MODSRC = \
+	$(MDSLIST:%.f90=$(MDSDIR)\\%.f90)
+
+#- output modules' *.o
+MDOLIST = \
+	$(patsubst %.f90,%.o, \
+	$(notdir $(MODSRC)))
+MODOBJ = \
+	$(MDOLIST:%.o=$(OBJDIR)\\%.o)
+#--------------------------------------
+#- combine XXXOBJs into OBJ
+OBJ = $(SRCOBJ) $(MODOBJ)
+#======================================
+# Compile Options
+ifeq ($(COMPILER), INTEL)
+IMODULE = -module
+ACCF    =
+FAST    = -O3
+F9FLAG  = $(FAST)
+endif
+
+ifeq ($(COMPILER), GXX)
+IMODULE = -J
+ACCF    =
+FAST    = -O3
+F9FLAG  = $(FAST)
+endif
+#--------------------------------------
+#- Debug options
+ifeq ($(CODESPEED), DEBUG)
+DEBUG   = -g
+endif
+ifeq ($(CODESPEED), FAST)
+DEBUG   =
+endif
+#======================================
+# Output .obj files
+$(OBJDIR)\\%.o: $(SRCDIR)\\%.f90
+	$(F9) -c $(F9FLAG) $(ACCF) \
+	$(INCLUDE) $(IMODULE) $(MODDIR) \
+	-o $@ $^
+#======================================
+# Make options
+.PHONY: all
+all: $(TARGET)
+$(TARGET): $(OBJ)
+	$(F9) -o $(TARGET) $(OBJ) $(ACCF) \
+	$(LINK) $(IMODULE) $(MODDIR)
+
+#- Compile in the order of module
+#-   .f90's name automatically
+.PHONY: mod
+mod: $(MODOBJ)
+$(OBJDIR)\\%.o: $(MDSDIR)\\%.f90
+	$(F9) -c $(F9FLAG) $(ACCF) \
+	$(INCLUDE) $(IMODULE) $(MODDIR) \
+	-o $@ $^
+
+.PHONY: clean
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+.PHONY: realclean
+realclean:
+	rm -f $(OBJ) $(MOD) $(TARGET)
+
+#======================================
+# for test
+TSTDIR = $(MAKEDIR)\\test
+TSTTGT = $(TSTDIR)\\test
+TSTSRC = $(TSTDIR)\\test.f90
+TSTOBJ = $(TSTDIR)\\test.o
+.PHONY: tst
+tst: $(TSTTGT)
+$(TSTTGT): $(TSTSRC)
+	$(F9) -o $@ $<
+.PHONY: tstcln
+tstcln:
+	rm -f $(TSTTGT) $(TSTOBJ)
