@@ -2,12 +2,13 @@
 
 ## File Structure
 
- `lsn` 目录下为学习阶段的示例程序，有如下子文件夹：
-
-* `python-intro`: [计算机科学和 PYTHON 编程导论（自主模式）](http://www.xuetangx.com/courses/course-v1:MITx+6_00_1x+sp/courseware/Week_1/videosequence:Lecture_1/)
-* `python-res`: [Using Python for Research](https://courses.edx.org/courses/course-v1:HarvardX+PH526x+2T2018/course/)
-* `python-app`: [Analytics in Python](https://courses.edx.org/courses/course-v1:ColumbiaX+BAMM.101x+3T2018/course/)
-* `python-micro`: [Introduction to Python: Creating Scalable, Robust, Interactive Code](https://courses.edx.org/courses/course-v1:Microsoft+DEV330x+3T2018/course/)
+* `1_simulator`: CFD/DDS/FEM
+* `2_algorithm`: Numerical Analysis
+* `lsn`: 学习阶段的示例程序，有如下子文件夹：
+  * `python-intro`: [计算机科学和 PYTHON 编程导论（自主模式）](http://www.xuetangx.com/courses/course-v1:MITx+6_00_1x+sp/courseware/Week_1/videosequence:Lecture_1/)
+  * `python-res`: [Using Python for Research](https://courses.edx.org/courses/course-v1:HarvardX+PH526x+2T2018/course/)
+  * `python-app`: [Analytics in Python](https://courses.edx.org/courses/course-v1:ColumbiaX+BAMM.101x+3T2018/course/)
+  * `python-micro`: [Introduction to Python: Creating Scalable, Robust, Interactive Code](https://courses.edx.org/courses/course-v1:Microsoft+DEV330x+3T2018/course/)
 
 ## Dependencies
 
