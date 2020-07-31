@@ -1,3 +1,3 @@
 # Roads2PL
 
-Roads to programming languages including C++/Fortran/Javascript/Python. Only for personal use.
+Roads to programming languages including C++/Fortran/JavaScript/Python. Only for personal use.
