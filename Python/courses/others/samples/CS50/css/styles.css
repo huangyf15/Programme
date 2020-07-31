@@ -1,0 +1,17 @@
+#foo {
+  color: blue;
+  text-align: center;
+}
+
+.baz {
+  color: orange;
+  text-align: center;
+}
+
+h2 {
+  color: grey;
+}
+
+body {
+  color: green;
+}
