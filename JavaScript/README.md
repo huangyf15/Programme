@@ -1,4 +1,4 @@
-# Roads to Javascript
+# Roads to JavaScript
 
 ## File Structure
 
