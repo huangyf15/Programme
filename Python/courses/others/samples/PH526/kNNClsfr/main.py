@@ -7,8 +7,8 @@ from sklearn.neighbors import KNeighborsClassifier
 predictors, outcomes = generate_synth_data()
 
 # assign the necessary parameters for test
-k = 2;
-filename = 'fig/knn_synth_2.pdf';
+k = 2
+filename = 'fig/knn_synth_2.pdf'
 limits = (-3, 4, -3, 4); h = 0.1
 
 # make and plot the prediction grid
