@@ -1,4 +1,4 @@
-# CS50: Web Programming with Python and JavaScript
+# CS50X: Web Programming with Python and JavaScript
 
 ## Structure
 
@@ -9,7 +9,7 @@
   * Git: version
 * Web application
   * Python/Django: logic
-  * SQL, Models, Migrations: data
+  * SQL/Models/Migrations: data
   * JavaScript: user interface
 * Testing
   * CI/CD
@@ -28,3 +28,14 @@
 
 * Bootstrap: Popular CSS library
 * Sass: Extension language of CSS
+
+## Python/Django
+
+### HTTP Status Codes
+
+* 200: OK
+* 301: Moved Permanently
+* 403: Forbidden
+* 404: Not Found
+* 500: Internal Server Error
+
