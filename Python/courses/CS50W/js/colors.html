@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Colors</title>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // Change font color according to event "onclick" (id)
+        document.querySelector('#red').onclick = () => {
+          document.querySelector('#hello').style.color = "red";
+        }
+        document.querySelector('#blue').onclick = () => {
+          document.querySelector('#hello').style.color = "blue";
+        }
+        document.querySelector('#green').onclick = () => {
+          document.querySelector('#hello').style.color = "green";
+        }
+
+        // Change font color according to event "onclick" (all)
+        document.querySelectorAll('.button').forEach( button => {
+          button.onclick = function() {
+            document.querySelector('#hello').style.color = button.dataset.color;
+          }
+        });
+
+        // Change font color according to event "onchange"
+        document.querySelector('select').onchange = function() {
+          console.log(`querySelector:\n this belongs to ${this}`);
+          document.querySelector('#hello').style.color = this.value;
+        };
+      
+      });
+      
+    </script>
+  </head>
+  <body>
+    <h1 id="hello">Hello!</h1>
+
+    <h3>onclick-based (id)</h3>
+    <p>
+      <button id="red">Red</button>
+      <button id="blue">Blue</button>
+      <button id="green">Green</button>
+    </p>
+
+    <h3>onclick-based (data-color)</h3>
+    <p>
+      <button data-color="red" class="button">Red</button>
+      <button data-color="blue" class="button">Blue</button>
+      <button data-color="green" class="button">Green</button>
+    </p>
+
+    <h3>onchange-based</h3>
+    <p>
+      <select>
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+      </select>
+    </p>
+  </body>
+</html>
