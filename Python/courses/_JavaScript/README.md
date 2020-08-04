@@ -2,8 +2,6 @@
 
 ## File Structure
 
-`lsn` 目录下为学习阶段的示例程序，有如下子文件夹：
-
 * `java-micro-1`：[Learn to Program in Java](https://courses.edx.org/courses/course-v1:Microsoft+DEV276x+3T2018/course/)
 * `java-micro-2`：[Object Oriented Programming in Java](https://courses.edx.org/courses/course-v1:Microsoft+DEV277x+3T2018/course/)
 * `java-uc3m-1`：[Introduction to Java Programming: starting to code in Java](https://courses.edx.org/courses/course-v1:UC3Mx+IT.1.1x+3T_2018/course/)
