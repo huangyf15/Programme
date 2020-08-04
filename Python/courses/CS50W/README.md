@@ -3,16 +3,17 @@
 ## Structure
 
 * Web page
-  * HTML5: structure
-  * CSS3: style 
+  * HTML5: structure (`html/`)
+  * CSS3: style  (`css/`)
 * Web application
-  * Python/Django: logic
+  * Python/Django: logic (`django/`)
   * SQL/Models/Migrations: data
-  * JavaScript/JSON: user interface
+  * JavaScript/JSON: user interface (`js/`)
 * Development
   * Version control: Git/GitHub
-  * Testing and CI/CD: GitHub Actions; Docker
+  * Testing and CI/CD: GitHub Actions; Docker (`test/`)
   * Scalability and Security
+* Project (`project/`)
 
 ## Web page (`html/`, `css/`)
 
@@ -100,7 +101,9 @@ See `singlepage.html`, `scroll.html`, `animate.html`, `react.html`, `counter1.ht
   num += 1;
   ```
 
-## Testing and CI/CD
+## Testing and CI/CD (`test/`)
+
+See `prime/`, `counter/`.
 
 ### Testing
 
