@@ -5,9 +5,9 @@
 * Web page
   * HTML5: structure (`html/`)
   * CSS3: style  (`css/`)
-* Web application
+* Web app
   * Python/Django: logic (`django/`)
-  * SQL/Models/Migrations: data
+  * SQL/Models/Migrations: data (`sql/`)
   * JavaScript/JSON: user interface (`js/`)
 * Development
   * Version control: Git/GitHub
@@ -29,7 +29,7 @@
 * Bootstrap: Popular CSS library
 * Sass: Extension language of CSS
 
-## Web application: logic (`django/`)
+## Web app: logic (`django/`)
 
 ### HTTP Status Codes
 
@@ -39,7 +39,84 @@
 * 404: Not Found
 * 500: Internal Server Error
 
-## Web application: user interface (`js/`)
+## Web app: data (`sql`)
+
+See `flights.sql`, `airline/`.
+
+### Database Management Systems
+
+* MySQL
+  * SQL: Structured Query Language
+  * Types: `CHAR(size)`, `VARCHAR(size)`, `SMALLINT`, `INT`, `BIGINT`, `FLOAT`, `DOUBLE`, ...
+* PostgreSQL
+* **SQLite**
+  * Constraints: `CHECK`, `DEFAULT`, `NOT NULL`, `PRIMARY KEY`, `UNIQUE`, ...
+  * Types: `TEXT`, `NUMERIC`, `INTEGER`, `REAL`, `BLOB`
+  * Functions: `AVERAGE`, `COUNT`, `MAX`, `MIN`, `SUM`, ...
+  * Queries: `CREATE TABLE`, `INSERT`, `SELECT`, `UPDATE`, `JOIN`, `CREATE INDEX`, ...
+  * Clauses: `LIMIT`, `ORDER BY`, `GROUP BY`, `HAVING`, ...
+
+#### `CREATE TABLE`
+
+```sql
+CREATE TABLE flights {
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  origin TEXT NOT NULL,
+  destination TEXT NOT NULL,
+  duration INTEGER NOT NULL
+}
+```
+
+#### `INSERT`
+
+```sql
+INSERT INTO flights
+  (origin, destination, duration)
+  VALUES ("New York", "London", 415);
+```
+
+#### `SELECT`
+
+```sql
+SELECT * FROM flights;
+SELECT origin, destination FROM flights;
+SELECT * FROM flights WHERE id = 3;
+```
+
+#### `UPDATE`
+
+```sql
+UPDATE flights
+  SET duration = 430
+  WHERE origin = "New York"
+  AND destination = "London";
+```
+
+#### `JOIN`
+
+* `JOIN / INNER JOIN`
+* `LEFT OUTER JOIN`
+* `RIGHT OUTER JOIN`
+* ``
+
+```sql
+SELECT first, origin, destination
+FROM flights JOIN passengers
+ON passengers.flight_id = flights.id;
+```
+
+#### `CREATE INDEX`
+
+```sql
+CREATE INDEX name_index ON passengers (last);
+```
+
+### Actions
+
+* SQL Injection
+* Race Condition
+
+## Web app: user interface (`js/`)
 
 See `hello.html`, `counter.html`, `tasks.html`, `colors.html`, `currency.html`.
 
