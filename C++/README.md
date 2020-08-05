@@ -2,20 +2,14 @@
 
 ## File Structure
 
-项目的目录下一般主要包含如下五个子文件夹：
-
-  * `src`：存放源代码（包括头文件 `.h` 和源文件 `.cpp`）
-  * `obj`：存放编译生成的目标文件
-  * `bin`：存放链接生成的可执行程序
-  * `test`：存放 `DEBUG` 阶段的测试程序
-  * `data`：存放数值结果及其后处理程序
-
-另外，`lsn` 目录下共包括如下四组学习阶段的示例程序，分别对应于[学堂在线](http://www.xuetangx.com/)上循序渐进的四门课程：
-
-* `cpp-basic`：C++ 语言程序设计基础[（自主模式）](http://www.xuetangx.com/courses/course-v1:TsinghuaX+00740043_2x_2015_T2+sp/courseware/8d1fd477f469492ba2c1297e6ace6f5d/66b42667082c42a5b0b4a6170a4ecb36/)
-* `cpp-advance`：C++ 语言程序设计进阶[（自主模式）](http://www.xuetangx.com/courses/course-v1:TsinghuaX+00740043_2x_2015_T2+sp/courseware/8d1fd477f469492ba2c1297e6ace6f5d/66b42667082c42a5b0b4a6170a4ecb36/)
-* `cpp-object`：面向对象程序设计（C++）[（自主模式）](http://www.xuetangx.com/courses/course-v1:TsinghuaX+00740043_2x_2015_T2+sp/courseware/8d1fd477f469492ba2c1297e6ace6f5d/66b42667082c42a5b0b4a6170a4ecb36/)
-* `cpp-linux`：基于 Linux 的 C++ [（自主模式）](http://www.xuetangx.com/courses/course-v1:TsinghuaX+00740043_2x_2015_T2+sp/courseware/8d1fd477f469492ba2c1297e6ace6f5d/66b42667082c42a5b0b4a6170a4ecb36/)
+  * `project`: 示例用的项目文件夹
+      * `src`：存放源代码（包括头文件 `.h` 和源文件 `.cpp`）
+      * `obj`：存放编译生成的目标文件
+      * `bin`：存放链接生成的可执行程序
+      * `test`：存放 `DEBUG` 阶段的测试程序
+      * `data`：存放数值结果及其后处理程序
+      * `makefile & run.sh`：项目自动编译工具文件
+  * `courses`: C++ courses
 
 ## Usage
 
