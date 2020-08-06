@@ -1,5 +1,7 @@
 #include "max_reload.h"
+
 #include <cmath>
+
 using namespace std;
 
 int max_reload(int x, int y) {

@@ -78,7 +78,7 @@
   ```c++
   #include <iostream>
   using namespace std;
-  void swap_ref(int& a,int& b) {
+  void swap_ref(int &a,int &b) {
     int t = a;
     a = b;
     b = t;

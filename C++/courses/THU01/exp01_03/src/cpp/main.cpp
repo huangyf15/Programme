@@ -1,7 +1,9 @@
+#include <iostream>
+
 #include "setTime.h"
 #include "computeFib.h"
 #include "max_reload.h"
-#include <iostream>
+
 using namespace std;
 
 int main() {

@@ -4,7 +4,7 @@
 
 * `1_simulator`: CFD/DDS/FEM
 * `2_algorithm`: Numerical Analysis
-* `courses`: Python (and JS) courses
+* `courses`: Python courses
 
 ## Dependencies
 

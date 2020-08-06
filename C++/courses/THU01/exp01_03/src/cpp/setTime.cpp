@@ -1,6 +1,8 @@
 #include "setTime.h"
+
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 
 bool invalidateDay(int year, int month, int day) {
@@ -79,10 +81,10 @@ void setTime() {
   }
 
   cout << "\nThe time is set to: "
-       << setw(4) << setfill('0') << myTime.year  << "/"
-       << setw(2) << setfill('0') << myTime.month << "/"
-       << setw(2) << setfill('0') << myTime.day   << " "
-       << setw(2) << setfill('0') << myTime.hour  << ":"
-       << setw(2) << setfill('0') << myTime.min   << ":"
-       << setw(2) << setfill('0') << myTime.sec   << endl;
+    << setw(4) << setfill('0') << myTime.year  << "/"
+    << setw(2) << setfill('0') << myTime.month << "/"
+    << setw(2) << setfill('0') << myTime.day   << " "
+    << setw(2) << setfill('0') << myTime.hour  << ":"
+    << setw(2) << setfill('0') << myTime.min   << ":"
+    << setw(2) << setfill('0') << myTime.sec   << endl;
 }

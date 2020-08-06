@@ -1,5 +1,5 @@
-#ifndef _COMPUTEFIB_H
-#define _COMPUTEFIB_H
+#ifndef EXP01_03_COMPUTEFIB_H_
+#define EXP01_03_COMPUTEFIB_H_
 
 int fib(int n);
 

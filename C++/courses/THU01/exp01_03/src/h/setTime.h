@@ -1,5 +1,5 @@
-#ifndef _SETTIME_H
-#define _SETTIME_H
+#ifndef EXP01_03_SETTIME_H_
+#define EXP01_03_SETTIME_H_
 
 struct MyTimeStruct {
   unsigned int year;
