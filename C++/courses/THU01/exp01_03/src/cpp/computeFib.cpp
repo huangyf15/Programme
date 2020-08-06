@@ -1,4 +1,6 @@
 #include "computeFib.h"
+#include <iostream>
+using namespace std;
 
 int fib(int n) {
   cout << "Processing fib(" << n << ")...\n";
