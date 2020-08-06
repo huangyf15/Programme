@@ -11,7 +11,7 @@ COMPILER = GXX
 LANGUAGE = CPP
 
 WORKDIR = C:\\Users\\Yunfan\\Documents\\Codes\\Roads2PL\\C++\\courses
-MAKEDIR = $(WORKDIR)\\sample
+MAKEDIR = $(WORKDIR)\\THU01\\exp01_03
 #======================================
 # Directory aliases
 TARGET = $(BINDIR)\\main

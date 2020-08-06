@@ -1,6 +1,6 @@
 # `THU01`
 
-## 第1章：绪论
+## 第1-3章：绪论，`C++`简单程序设计与函数
 
 ### 面向对象的基本概念
 
@@ -59,3 +59,72 @@
 * 连接；
 * 测试；
 * 调试。
+
+### 函数的调用与重载
+
+* 函数的嵌套调用
+* 函数的递归调用
+* 函数的重载（多态性的体现）
+
+### 函数的参数传递
+
+* 值传递
+  * 用于传递参数值，是一种单向传递
+  * 从时间开销的角度，值传递要比引用传递更大
+* 引用传递
+  * 引用（`&`）是标识符的别名，可以作为形参，是一种双向传递
+  * 使用引用传递可以实现多个返回值，而常引用可以保障实参数据的安全
+  * 定义一个引用时，必须同时对它进行初始化，使它指向一个已存在的对象
+  ```c++
+  #include <iostream>
+  using namespace std;
+  void swap_ref(int& a,int& b) {
+    int t = a;
+    a = b;
+    b = t;
+  }
+  void swap_val(int a,int b) {
+    int t = a;
+    a = b;
+    b = t;
+  }
+  int main() {
+    int x = 5, y = 10;
+    cout << "Origin: x =" << x << "; y =" << y << endl;
+    swap_val(x,y);
+    cout << "Value: x =" << x << "; y =" << y << endl;
+    swap_ref(x,y);
+    cout << "Reference: x =" << x << "; y =" << y << endl;
+    return 0;
+  }
+  ```
+
+### 特殊类型的函数
+
+* 含有可变参数的函数
+  * `C++` 标准中提供了两种主要的方法
+    * 如果所有的实参类型相同，可以传递一个名为 `initializer_list` 的标准库类型
+    * 如果实参的类型不同，我们可以编写可变参数的模板（第9章）
+  * `initializer_list` 是一个类模板
+    * 使用模板时，需要在模板名字后面跟一对尖括号，括号内给出类型参数，如
+      * `initializer_list<string> ls;`
+    * 对象中的元素永远是常量值，我们无法改变该对象中元素的值
+    * 含有 `initializer_list` 形参的函数也可以同时拥有其他形参
+* 内联函数
+* 带默认参数值的函数
+* `constexpr` 函数
+  * constexpr函数语法规定
+    * `constexpr` 的变量的值必须是编译器在编译的时候就可以确定的，而 `const` 的变量的值无此要求而只是指明变量值不可后续更改；
+    * `constexpr` 修饰的函数在其所有参数都是 `constexpr` 时，一定返回`constexpr`；
+    * 函数体中必须有且仅有一条 `return`语句。
+  * `constexpr`函数举例
+  ```c++
+  constexpr int get_size() { return 20; }
+  constexpr int foo = get_size();
+  ```
+
+## 第4章：类与对象
+
+## 第5章：数据的共享与保护
+
+## 第6章：数组、指针与字符串
