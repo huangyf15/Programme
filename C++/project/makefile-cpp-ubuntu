@@ -1,7 +1,7 @@
 #======================================
 # Author: Yunfan Huang
 # Institute: Tsinghua University
-# Updated: Feb 28, 2019
+# Updated: Aug 06, 2020
 #======================================
 CODESPEED = DEBUG
 
@@ -10,7 +10,8 @@ PLATFORM = YUNFAN
 COMPILER = GXX
 LANGUAGE = CPP
 
-MAKEDIR = PATH/TO/MAKEDIR
+WORKDIR = PATH/TO/WORKDIR
+MAKEDIR = REL_PATH/TO/MAKEDIR
 #======================================
 # Directory aliases
 TARGET = $(BINDIR)/TARGETNAME
@@ -60,6 +61,12 @@ SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)/%.o)
 #--------------------------------------
 #- combine XXXOBJs into OBJ
 OBJ = $(SRCOBJ) $(MODOBJ)
+#- output present obj & bin files' list
+OBJTMP = $(wildcard $(OBJDIR)/*.o)
+TGTTMP = $(wildcard $(BINDIR)/*.exe)
+#- combine OBJs/TGTs into OBJ/TGT
+OBJALL = $(OBJ) $(OBJTMP)
+TGTALL = $(TARGET) $(TGTTMP)
 #======================================
 # Compile Options
 ifeq ($(COMPILER), INTEL)
@@ -96,8 +103,8 @@ $(TARGET): $(OBJ)
 
 .PHONY: clean
 clean:
-	rm -f $(TARGET)
+	rm -f $(TGTALL)
 
 .PHONY: cleanall
 cleanall:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJALL) $(TGTALL)

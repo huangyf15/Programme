@@ -63,7 +63,7 @@ SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
 OBJ = $(SRCOBJ) $(MODOBJ)
 #- output present obj & bin files' list
 OBJTMP = $(wildcard $(OBJDIR)/*.o)
-TGTTMP = $(wildcard $(BINDIR)/*.exe)
+TGTTMP = $(wildcard $(BINDIR)\\\\*.exe)
 #- combine XXXOBJs into OBJ
 OBJALL = $(OBJ) $(OBJTMP)
 TGTALL = $(TARGET) $(TGTTMP)

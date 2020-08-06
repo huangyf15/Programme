@@ -1,3 +1,4 @@
+#!/bin/bash
 make cleanall
 make mod
 make

@@ -1,7 +1,7 @@
 #======================================
 # Author: Yunfan Huang
 # Institute: Tsinghua University
-# Updated: Aug 06, 2019
+# Updated: Aug 06, 2020
 #======================================
 CODESPEED = DEBUG
 
@@ -63,8 +63,8 @@ SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
 OBJ = $(SRCOBJ) $(MODOBJ)
 #- output present obj & bin files' list
 OBJTMP = $(wildcard $(OBJDIR)/*.o)
-TGTTMP = $(wildcard $(BINDIR)/*.exe)
-#- combine XXXOBJs into OBJ
+TGTTMP = $(wildcard $(BINDIR)\\\\*.exe)
+#- combine OBJs/TGTs into OBJ/TGT
 OBJALL = $(OBJ) $(OBJTMP)
 TGTALL = $(TARGET) $(TGTTMP)
 #======================================
