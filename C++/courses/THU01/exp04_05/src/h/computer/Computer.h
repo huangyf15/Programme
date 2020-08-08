@@ -27,8 +27,8 @@ class Computer {
   CPU my_cpu;
   RAM my_ram;
   CD_ROM my_cd_rom;
-  unsigned int storage_size; // in GB
-  unsigned int bandwidth;    // in MB
+  unsigned int _storage_size; // in GB
+  unsigned int _bandwidth;    // in MB
 };
 
 #endif

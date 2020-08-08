@@ -15,21 +15,21 @@ class RAM {
   ~RAM() { cout << "Destruct a RAM!" << endl; }
 
 
-  RAM_Type getType() const { return type; }
-  unsigned int getFrequency() const { return frequency; }
-  unsigned int getSize() const { return size; }
+  RAM_Type getType() const { return _type; }
+  unsigned int getFrequency() const { return _frequency; }
+  unsigned int getSize() const { return _size; }
 
-  void setType(RAM_Type t) { type = t; }
-  void setFrequency(unsigned int f) { frequency = f; }
-  void setSize(unsigned int s) { size = s; }
+  void setType(RAM_Type t) { _type = t; }
+  void setFrequency(unsigned int f) { _frequency = f; }
+  void setSize(unsigned int s) { _size = s; }
 
   void Run() { cout << "RAM begins!" << endl; }
   void Stop() { cout << "RAM stops!" << endl; }
 
  private:
-  RAM_Type type;
-  unsigned int frequency;  // in MHz
-  unsigned int size;       // in GB
+  RAM_Type _type;
+  unsigned int _frequency;  // in MHz
+  unsigned int _size;       // in GB
 };
 
 #endif

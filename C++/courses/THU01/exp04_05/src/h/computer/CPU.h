@@ -14,21 +14,21 @@ class CPU {
   CPU(const CPU &c);
   ~CPU() { cout << "Destruct a CPU!" << endl; }
 
-  CPU_Rank getRank() const { return rank; }
-  unsigned int getFrequency() const { return frequency; }
-  float getVoltage() const { return voltage; }
+  CPU_Rank getRank() const { return _rank; }
+  unsigned int getFrequency() const { return _frequency; }
+  float getVoltage() const { return _voltage; }
 
-  void setRank(CPU_Rank r) { rank = r; }
-  void setFrequency(unsigned int f) { frequency = f; }
-  void setVoltage(float v) { voltage = v; }
+  void setRank(CPU_Rank r) { _rank = r; }
+  void setFrequency(unsigned int f) { _frequency = f; }
+  void setVoltage(float v) { _voltage = v; }
 
   void Run() { cout << "CPU begins!" << endl; }
   void Stop() { cout << "CPU stops!" << endl; }
 
  private:
-  CPU_Rank rank;
-  unsigned int frequency;
-  float voltage;
+  CPU_Rank _rank;
+  unsigned int _frequency;
+  float _voltage;
 };
 
 #endif
