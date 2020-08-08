@@ -9,8 +9,9 @@
 
 using namespace std;
 
-int getPointsSize(PointsArray points) {
-  return points.getSize();
+PointsArray getPoints() {
+  PointsArray points(2);
+  return points;
 }
 
 int main() {
@@ -20,7 +21,13 @@ int main() {
 
   PointsArray points1;
   PointsArray points2(points1);
-  cout << PointsArray().getSize() << endl;
+// TODO: Why is the move constructor not output?
+  cout << getPoints().getSize() << endl;
+/*
+  Simple constructor!
+  2
+  Deleting...
+*/
 
   vector<double> arr(3);
   for (auto i = arr.begin(); i != arr.end(); ++i)

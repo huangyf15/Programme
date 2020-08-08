@@ -4,7 +4,7 @@
 
 using namespace std;
 
-PointsArray::PointsArray(int _size) : _size(_size) {
+PointsArray::PointsArray(int size) : _size(size) {
   _points = new Point[_size];
   cout << "Simple constructor!" << endl;
 }
