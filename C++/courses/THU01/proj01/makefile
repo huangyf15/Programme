@@ -21,10 +21,10 @@ SRCDIR = $(MAKEDIR)\\src
 CPPDIR_HOME = $(SRCDIR)\\cpp
 HEADDIR_HOME = $(SRCDIR)\\h
 #- include sub-directories
-CPPDIR_CPT = $(CPPDIR_HOME)\\computer
-CPPDIR = $(CPPDIR_HOME) $(CPPDIR_CPT)
-HEADDIR_CPT = $(HEADDIR_HOME)\\computer
-HEADDIR = $(HEADDIR_HOME) $(HEADDIR_CPT)
+CPPDIR_SUB = $(CPPDIR_HOME)\\subclass
+CPPDIR = $(CPPDIR_HOME) $(CPPDIR_SUB)
+HEADDIR_SUB = $(HEADDIR_HOME)\\subclass
+HEADDIR = $(HEADDIR_HOME) $(HEADDIR_SUB)
 #==========================================================
 # Platform and Compiler
 ifeq ($(PLATFORM), YUNFAN)
@@ -97,7 +97,7 @@ TGTALL = $(TARGET) $(TGTTMP)
 # Generate obj files
 $(OBJDIR)\\%.o: $(CPPDIR_HOME)\\%.cpp
 	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
-$(OBJDIR)\\%.o: $(CPPDIR_CPT)\\%.cpp
+$(OBJDIR)\\%.o: $(CPPDIR_SUB)\\%.cpp
 	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
 #==========================================================
 # Make options

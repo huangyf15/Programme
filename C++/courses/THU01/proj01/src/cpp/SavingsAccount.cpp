@@ -1,46 +1,53 @@
 #include "SavingsAccount.h"
+#include "Error.h"
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-SavingsAccount::SavingsAccount(int date, int id, double rate)
+double SavingsAccount::total = 0;
+
+SavingsAccount::SavingsAccount(Date date, string id, double rate)
     : id(id), balance(0), rate(rate), lastDate(date), accumulation(0) {
-  cout << date << "\t#" << id << " is created." << endl;
+  date.show();
+  cout << "!! #" << id << " is created." << endl;
 }
 
-void SavingsAccount::deposit(int date, double amount) {
-  if (amount > 0) {
-    record(date, amount);
+void SavingsAccount::deposit(const Date &date, const double &amount, 
+                             const string &desc) {
+  record(date, amount, desc);
+}
+
+void SavingsAccount::withdraw(const Date &date, double amount, 
+                              const string &desc) {
+  if (amount > getBalance()) {
+    Error::error("Not enough money");
   } else {
-    cout << " Error: input deposit must be positive!" << endl;
+    record(date, -amount, desc); 
   }
 }
 
-void SavingsAccount::withdraw(int date, double amount) {
-  if (amount > 0) {
-    record(date, -amount);
-  } else {
-    cout << " Error: input withdraw must be positive!" << endl;
-  }
-}
-
-void SavingsAccount::settle(int date) {
+void SavingsAccount::settle(Date date) {
   double interest = accumulate(date) * rate / 365;
   if (interest != 0)
-    record(date, interest);
+    record(date, interest, "interest");
   accumulation = 0;
 }
 
-void SavingsAccount::show() {
-  cout << "#" << id << "\tBalance: " << balance << endl;
+void SavingsAccount::show() const {
+  cout << "!! #" << id << "\tBalance: " << balance << endl;
 }
 
-void SavingsAccount::record(int date, double amount) {
+void SavingsAccount::record(const Date &date, const double &amount,
+                            const string &desc) {
   accumulation = accumulate(date);
   lastDate = date;
-  amount = floor(amount * 100 + 0.5) / 100;
-  balance += amount;
-  cout << date << "\t#" << id << "\t"
-    << "amount " << amount << "\tbalance " << balance << endl;
+  double amount_floor = floor(amount * 100 + 0.5) / 100;
+  balance += amount_floor;
+  total += amount_floor;
+  date.show();
+  cout << ">> #" << id
+    << "\tamount: " << amount_floor << "\tbalance: " << balance
+    << "\tmessage: " << desc << endl;
 }

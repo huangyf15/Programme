@@ -10,7 +10,7 @@ bool invalidateDay(int year, int month, int day) {
   if (day > 0) {
     switch(month) {
       case 2:
-        if (year % 4 == 0 && year % 100 != 0) {
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
           cout << "Year " << year << " is leap year." << endl;
           if (day <= 29) invalidDayFlag = false;
         } else {
