@@ -11,7 +11,7 @@ COMPILER = GXX
 LANGUAGE = CPP
 
 WORKDIR = C:\\Users\\Yunfan\\Documents\\Codes\\Roads2PL\\C++\\courses
-MAKEDIR = $(WORKDIR)\\THU01\\exp01_03
+MAKEDIR = $(WORKDIR)\\THU01\\exp06
 #======================================
 # Directory aliases
 TARGET = $(BINDIR)\\main
@@ -80,7 +80,7 @@ ifeq ($(COMPILER), GXX)
 IMODULE = -J
 ACCF    =
 FAST    = -O3
-CFLAGS  = -O3
+CFLAGS  = -std=c++11
 endif
 #--------------------------------------
 #- Debug options

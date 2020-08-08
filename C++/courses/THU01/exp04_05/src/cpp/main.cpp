@@ -5,6 +5,8 @@
 #include "computer/Computer.h"
 
 int main() {
+  cout << endl;
+
   Clock c1(8,10,0);
   Clock c2;
   Clock c3 = c1;
@@ -16,12 +18,18 @@ int main() {
   c2.setHour(10);
   c2.showTime();
 
+  cout << endl;
+
   Point p1(1,2);
   Point p2;
   p1.showCoordinate();
   p2.showCoordinate();
+  Point::showCount();
+  showDistance(p1,p2);
   Line l1(p1,p2);
   l1.showLine();
+
+  cout << endl;
 
   ExamInfo course1("English", 'B');
   ExamInfo course2("Calculus", true);
@@ -30,6 +38,8 @@ int main() {
   course2.show();
   course3.show();
 
+  cout << endl;
+
   CPU cpu1(P6,300,2.8);
   RAM ram1(DDR3,1600,8);
   CD_ROM cd_rom1(SATA,2,built_in);
@@ -37,5 +47,6 @@ int main() {
   computer1.Run();
   computer1.Stop();
 
+  cout << endl;
   return 0;
 }
