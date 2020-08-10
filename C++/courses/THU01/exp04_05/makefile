@@ -19,8 +19,8 @@ BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
 HEADDIR = $(SRCDIR)\\h
+#- include cpp's directories
 CPPDIR_HOME = $(SRCDIR)\\cpp
-#- include sub-directories
 CPPDIR_CPT = $(CPPDIR_HOME)\\computer
 CPPDIR = $(CPPDIR_HOME) $(CPPDIR_CPT)
 #==========================================================

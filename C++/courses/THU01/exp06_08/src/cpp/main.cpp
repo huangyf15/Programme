@@ -1,21 +1,24 @@
+/*
 #include "Employee.h"
 #include "Point.h"
 #include "PointsArray.h"
 #include "Animal.h"
-#include "subclass/Vehicle.h"
-#include "subclass/Motorcycle.h"
 #include "compute.h"
 #include "average.h"
+*/
+#include "Vehicle.h"
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
+/*
 PointsArray getPoints() {
   PointsArray points(2);
   return points;
 }
+*/
 
 int main() {
 /*

@@ -22,4 +22,9 @@ class Motorcar : virtual public Vehicle {
   int seatNum;
 };
 
+class Motorcycle : public Bicycle, public Motorcar{
+ public:
+  double length;
+};
+
 #endif
