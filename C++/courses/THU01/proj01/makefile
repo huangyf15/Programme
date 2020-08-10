@@ -18,13 +18,11 @@ TARGET = $(BINDIR)\\main
 BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
+HEADDIR = $(SRCDIR)\\h
+#- include cpp's directories
 CPPDIR_HOME = $(SRCDIR)\\cpp
-HEADDIR_HOME = $(SRCDIR)\\h
-#- include sub-directories
 CPPDIR_SUB = $(CPPDIR_HOME)\\subclass
 CPPDIR = $(CPPDIR_HOME) $(CPPDIR_SUB)
-HEADDIR_SUB = $(HEADDIR_HOME)\\subclass
-HEADDIR = $(HEADDIR_HOME) $(HEADDIR_SUB)
 #==========================================================
 # Platform and Compiler
 ifeq ($(PLATFORM), YUNFAN)

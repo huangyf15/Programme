@@ -18,8 +18,8 @@ TARGET = $(BINDIR)\\main
 BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
-CPPDIR = $(SRCDIR)\\cpp
 HEADDIR = $(SRCDIR)\\h
+CPPDIR = $(SRCDIR)\\cpp
 
 #======================================
 # Platform and Compiler

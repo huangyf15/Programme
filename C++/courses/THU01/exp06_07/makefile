@@ -11,7 +11,7 @@ COMPILER = GXX
 LANGUAGE = CPP
 
 WORKDIR = C:\\Users\\Yunfan\\Documents\\Codes\\Roads2PL\\C++\\courses
-MAKEDIR = $(WORKDIR)\\THU01\\exp04_05
+MAKEDIR = $(WORKDIR)\\THU01\\exp06_07
 #==========================================================
 # Directory aliases
 TARGET = $(BINDIR)\\main
@@ -19,10 +19,10 @@ BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
 HEADDIR = $(SRCDIR)\\h
+#- include cpp's directories
 CPPDIR_HOME = $(SRCDIR)\\cpp
-#- include sub-directories
-CPPDIR_CPT = $(CPPDIR_HOME)\\computer
-CPPDIR = $(CPPDIR_HOME) $(CPPDIR_CPT)
+CPPDIR_SUB = $(CPPDIR_HOME)\\subclass
+CPPDIR = $(CPPDIR_HOME) $(CPPDIR_SUB)
 #==========================================================
 # Platform and Compiler
 ifeq ($(PLATFORM), YUNFAN)
@@ -62,7 +62,7 @@ ifeq ($(COMPILER), GXX)
 IMODULE = -J
 ACCF    =
 FAST    = -O3
-CFLAGS  = -O2
+CFLAGS  = -std=c++11
 endif
 #--------------------------------------
 #- Debug options
@@ -94,9 +94,9 @@ TGTALL = $(TARGET) $(TGTTMP)
 #==========================================================
 # Generate obj files
 $(OBJDIR)\\%.o: $(CPPDIR_HOME)\\%.cpp
-	$(CC) -c $^ $(CFLAGS) $(DEBUG) $(ACCF) $(INCLUDE) -o $@
-$(OBJDIR)\\%.o: $(CPPDIR_CPT)\\%.cpp
-	$(CC) -c $^ $(CFLAGS) $(DEBUG) $(ACCF) $(INCLUDE) -o $@
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
+$(OBJDIR)\\%.o: $(CPPDIR_SUB)\\%.cpp
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
 #==========================================================
 # Make options
 .PHONY: all

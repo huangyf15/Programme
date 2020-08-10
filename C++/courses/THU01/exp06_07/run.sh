@@ -1,4 +1,4 @@
 #!/bin/bash
 make cleanall
-make
+make all
 ./bin/main
