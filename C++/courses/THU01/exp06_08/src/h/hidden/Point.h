@@ -1,12 +1,21 @@
-#ifndef EXP06_POINT_H_
-#define EXP06_POINT_H_
+#ifndef EXP08_POINT_H_
+#define EXP08_POINT_H_
+
+#include <iostream>
+
+using namespace std;
 
 class Point {
  public:
-  Point() : _x(0), _y(0) {}
-  Point(int x, int y) : _x(x), _y(y) {}
+  Point(int x = 0, int y = 0) : _x(x), _y(y) {}
   Point(const Point &point);
   ~Point();
+
+  Point &operator++ ();
+  Point operator++ (int);
+  Point &operator-- ();
+  Point operator-- (int);
+  friend ostream &operator << (ostream &o, const Point &p);
 
   int getX() const { return _x; }
   int getY() const { return _y; }
