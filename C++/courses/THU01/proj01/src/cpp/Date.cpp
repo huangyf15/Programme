@@ -43,10 +43,6 @@ bool Date::isLeapYear(const int &year) {
   return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 }
 
-void Date::show() const {
-  cout << _date << endl;
-}
-
 int Date::distance_abs() const {
   int yr_pass = _year - 1;
   int mo_pass = _month - 1;
@@ -57,6 +53,6 @@ int Date::distance_abs() const {
   return distance;
 }
 
-int Date::distance_rel(const Date &anotherDate) const {
-  return distance_abs() - anotherDate.distance_abs();
+int Date::operator- (const Date &anotherDate) const {
+  return this->distance_abs() - anotherDate.distance_abs();
 }

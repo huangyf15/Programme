@@ -44,15 +44,14 @@ void SavingsAccount::withdraw(const Date &date, double amount,
     _acc.change(date, getBalance());
 }
 
-void SavingsAccount::settle(Date date) {
-  double interest;
-  if (Date::isLeapYear(date.getYear() - 1))
-    interest = _acc.getSum(date) * _rate / 366;
-  else
-    interest = _acc.getSum(date) * _rate / 365;
-  if (interest != 0)
-    record(date, interest, "interest");
-  _acc.reset(date, getBalance());
+void SavingsAccount::settle(const Date &date) {
+  if (date.getMonth() == 1) {
+    int maxDay = Date::isLeapYear(date.getYear() - 1)? 366 : 365;
+    double interest = _acc.getSum(date) * _rate / maxDay;
+    if (interest != 0)
+      record(date, interest, "interest");
+    _acc.reset(date, getBalance());
+  }
 }
 
 void SavingsAccount::show() const {
@@ -79,13 +78,15 @@ void CreditAccount::withdraw(const Date &date, double amount,
     _acc.change(date, getDebt());
 }
 
-void CreditAccount::settle(Date date) {
-  double interest = _acc.getSum(date) * _rate;
-  if (interest != 0)
-    record(date, interest, "interest");
-  if (date.getMonth() == 1)
-    record(date, -_fee, "annual fee");
-  _acc.reset(date, getDebt());
+void CreditAccount::settle(const Date &date) {
+  if (date.getDay() == 1) {
+    double interest = (_acc.getSum(date) * _rate);
+    if (interest != 0)
+      record(date, interest, "interest");
+    if (date.getMonth() == 1)
+      record(date, -_fee, "annual fee");
+    _acc.reset(date, getDebt());
+  }
 }
 
 void CreditAccount::show() const {

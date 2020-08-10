@@ -12,8 +12,14 @@ class Account {
  public:
   const string &getId() const { return _id; }
   double getBalance() const { return _balance; }
-  void show() const;
   static double getTotal() { return _total; }
+
+  virtual void deposit(const Date &date, const double &amount, 
+                       const string &desc) = 0;
+  virtual void withdraw(const Date &date, double amount, 
+                        const string &desc) = 0;
+  virtual void settle(const Date &date) = 0;
+  virtual void show() const;
 
  protected:
   Account(Date date, string id);
@@ -30,11 +36,11 @@ class SavingsAccount : public Account {
   SavingsAccount(Date date, string id, double rate);
   double getRate() const { return _rate; }
 
-  void deposit(const Date &date, const double &amount, const string &desc);
-  void withdraw(const Date &date, double amount, const string &desc);
-  void settle(Date date);
-
-  void show() const;
+  virtual void deposit(const Date &date, const double &amount, 
+                       const string &desc);
+  virtual void withdraw(const Date &date, double amount, const string &desc);
+  virtual void settle(const Date &date);
+  virtual void show() const;
 
  private:
   double _rate;
@@ -58,11 +64,11 @@ class CreditAccount : public Account {
       return _credit;
   };
 
-  void deposit(const Date &date, const double &amount, const string &desc);
-  void withdraw(const Date &date, double amount, const string &desc);
-  void settle(Date date);
-
-  void show() const;
+  virtual void deposit(const Date &date, const double &amount, 
+                       const string &desc);
+  virtual void withdraw(const Date &date, double amount, const string &desc);
+  virtual void settle(const Date &date);
+  virtual void show() const;
 
  private:
   double _rate;

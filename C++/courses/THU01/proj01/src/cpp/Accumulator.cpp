@@ -3,15 +3,17 @@
 #include <cmath>
 #include <iostream>
 
+using namespace std;
+
 Accumulator::Accumulator(const Date &date, const double &value)
     : _date(date), _value(value), _sum(0) {}
 
 double Accumulator::getSum(const Date &date) const {
-  return _sum + _value * date.distance_rel(_date);
+  return _sum + _value * (date - _date);
 }
 
 void Accumulator::change(const Date &date, const double &value) {
-  _sum += _value * date.distance_rel(_date);
+  _sum += _value * (date - _date);
   _date = date;
   _value = value;
 }
