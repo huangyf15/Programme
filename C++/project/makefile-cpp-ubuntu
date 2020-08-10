@@ -83,12 +83,14 @@ SRCLIST = $(notdir $(SRC))
 OBJLIST = $(patsubst %.cpp,%.o,$(SRCLIST))
 #- output *.o => /obj/*.o
 SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)/%.o)
+#- combine XXXOBJs into OBJ
+OBJ = $(SRCOBJ) $(MODOBJ)
 #--------------------------------------
 #- output present obj & bin files' list
 OBJTMP = $(wildcard $(OBJDIR)/*.o)
 TGTTMP = $(wildcard $(BINDIR)/*.exe)
-#- combine XXXOBJs into OBJ
-OBJALL = $(SRCOBJ) $(MODOBJ) $(OBJTMP)
+#- combine them into OBJ and TARGET
+OBJALL = $(OBJ) $(OBJTMP)
 TGTALL = $(TARGET) $(TGTTMP)
 #==========================================================
 # Generate .obj files
