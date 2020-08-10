@@ -9,7 +9,7 @@ using namespace std;
 double Account::_total = 0;
 
 Account::Account(Date date, string id) : _id(id), _balance(0) {
-  cout << "!! " << date.getDate() << "\t#" << id << " is created." << endl;
+  cout << date.getDate() << "\t#" << id << " is created." << endl;
 }
 
 void Account::record(const Date &date, const double &amount,
@@ -23,7 +23,7 @@ void Account::record(const Date &date, const double &amount,
 }
 
 void Account::show() const {
-  cout << "!! #" << _id << "\tBalance: " << _balance;
+  cout << "\t#" << _id << "\tBalance: " << _balance;
 }
 
 SavingsAccount::SavingsAccount(Date date, string id, double rate)

@@ -1,4 +1,5 @@
 #include "Account.h"
+#include "Array.h"
 #include "Date.h"
 
 #include <iostream>
@@ -7,42 +8,67 @@ using namespace std;
 
 int main() {
   Date date(2008,11,1);
-  SavingsAccount sa1(date, "S3755217", 0.015);
-  SavingsAccount sa2(date, "S2342342", 0.015);
-  CreditAccount ca(date, "C5392394", 10000, 0.0005, 50);
-  Account *accounts[] = { &sa1, &sa2, &ca};
-  const int n = sizeof(accounts) / sizeof(Account*);
+  Array<Account*> accounts(0);
 
-  cout << ">> Help:\n\t(d) deposit\n\t(w) withdraw\n\t(s) show"
-       << "\n\t(c) change day\n\t(n) next month\n\t(e) exit\n" << endl;
+  cout << ">> Help:\n\t(a) add account \n\t(d) deposit \n\t(w) withdraw \n\t(s) show "
+       << "\n\t(c) change day \n\t(n) next month \n\t(e) exit \n" << endl;
   char cmd;
   do {
     cout << date.getDate() << "\tTotal: " << Account::getTotal() << "\tcommand> ";
 
+    char type;
     int index, day;
-    double amount;
-    string desc;
+    double amount, credit, rate, fee;
+    string id, desc;
+    Account *account;
 
     cin >> cmd;
     switch (cmd) {
+      case 'a':
+        cout << "Please successively input: type id [Enter]"
+             << "\n\ttype = s: Savings Account"
+             << "\n\t       c: Credit Account" << endl;
+        cin >> type >> id;
+        if (type == 's') {
+          cout << "Please input: rate [Press Enter to Confirm]" << endl;
+          cin >> rate;
+          account = new SavingsAccount(date, id, rate);
+        } else if (type == 'c'){
+          cout << "Please successively input: credit rate fee "
+               << "[Press Enter to Confirm]" << endl;
+          cin >> credit >> rate >> fee;
+          account = new CreditAccount(date, id, credit, rate, fee);
+        } else {
+          cout << "Invalid type of account. Input again." << endl;
+        }
+        if ((type == 's') || (type == 'c')) {
+          accounts.resize(accounts.getSize() + 1);
+          accounts[accounts.getSize() - 1] = account;
+        }
+        break;
       case 'd':
+        cout << "Please successively input: index amount "
+              << "[Press Enter to Confirm]" << endl;
         cin >> index >> amount;
         getline(cin, desc);
-        accounts[index] -> deposit(date, amount, desc);
+        accounts[index]->deposit(date, amount, desc);
         break;
       case 'w':
+        cout << "Please successively input: index amount "
+              << "[Press Enter to Confirm]" << endl;
         cin >> index >> amount;
         getline(cin, desc);
-        accounts[index] -> withdraw(date, amount, desc);
+        accounts[index]->withdraw(date, amount, desc);
         break;
       case 's':
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < accounts.getSize(); i++) {
           cout << "[" << i << "]";
           accounts[i]->show();
           cout << endl;
         }
         break;
       case 'c':
+        cout << "Please input: day [Press Enter to Confirm]" << endl;
         cin >> day;
         if (day < date.getDay())
           cout << "You cannot specify a previous day!\n";
@@ -56,10 +82,14 @@ int main() {
           date = Date(date.getYear() + 1, 1, 1);
         else
           date = Date(date.getYear(), date.getMonth()+1, 1);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < accounts.getSize(); i++)
           accounts[i]->settle(date);
         break;
     }
   } while (cmd != 'e');
+
+  for (int i = 0; i < accounts.getSize(); i++)
+    delete accounts[i];
+
   return 0;
 }
