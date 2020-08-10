@@ -1,7 +1,7 @@
 #======================================
 # Author: Yunfan Huang
 # Institute: Tsinghua University
-# Updated: Aug 06, 2020
+# Updated: Aug 10, 2020
 #======================================
 CODESPEED = DEBUG
 
@@ -10,18 +10,23 @@ PLATFORM = YUNFAN
 COMPILER = GXX
 LANGUAGE = CPP
 
+TARGETNAME = 
+SUBCLSNAME = 
+
 WORKDIR = PATH\\TO\\WORKDIR
 MAKEDIR = REL_PATH\\TO\\MAKEDIR
-#======================================
+#==========================================================
 # Directory aliases
-TARGET = $(BINDIR)\\TARGETNAME
+TARGET = $(BINDIR)\\$(TARGETNAME)
 BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
-CPPDIR = $(SRCDIR)\\cpp
 HEADDIR = $(SRCDIR)\\h
-
-#======================================
+#- include cpp's directories
+CPPDIR_HOME = $(SRCDIR)\\cpp
+CPPDIR_SUB = $(CPPDIR_HOME)\\$(SUBCLSNAME)
+CPPDIR = $(CPPDIR_HOME) $(CPPDIR_SUB)
+#==========================================================
 # Platform and Compiler
 ifeq ($(PLATFORM), YUNFAN)
 
@@ -36,7 +41,7 @@ endif
 
 ifeq ($(COMPILER), GXX)
 OPTLIB =
-INCLUDE = -I $(MYLIB)
+INCLUDE = $(foreach LIB,$(MYLIB),-I $(LIB))
 LINK =
 ifeq ($(LANGUAGE), C)
 CC = gcc
@@ -47,40 +52,18 @@ endif
 endif
 
 endif
-#======================================
-# Files' aliases
-#- output src files' list
-SRC = $(wildcard $(CPPDIR)/*.cpp)
-SRCLIST = $(notdir $(SRC))
-#- output *.cpp => *.o in the same dir
-#- % means operating on each one
-OBJLIST = \
-	$(patsubst %.cpp,%.o,$(SRCLIST))
-#- output *.o => \\obj\\*.o
-SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
-#--------------------------------------
-#- combine XXXOBJs into OBJ
-OBJ = $(SRCOBJ) $(MODOBJ)
-#- output present obj & bin files' list
-OBJTMP = $(wildcard $(OBJDIR)/*.o)
-TGTTMP = $(wildcard $(BINDIR)\\\\*.exe)
-#- combine OBJs/TGTs into OBJ/TGT
-OBJALL = $(OBJ) $(OBJTMP)
-TGTALL = $(TARGET) $(TGTTMP)
-#======================================
+#==========================================================
 # Compile Options
 ifeq ($(COMPILER), INTEL)
 IMODULE = -module
-ACCF    =
 FAST    = -O3
 CFLAGS  = -O2
 endif
 
 ifeq ($(COMPILER), GXX)
 IMODULE = -J
-ACCF    =
 FAST    = -O3
-CFLAGS  = -O3
+CFLAGS  = -std=c++11
 endif
 #--------------------------------------
 #- Debug options
@@ -90,23 +73,41 @@ endif
 ifeq ($(CODESPEED), FAST)
 DEBUG   =
 endif
-#======================================
-# Output .obj files
-$(OBJDIR)\\%.o: $(CPPDIR)\\%.cpp
-	$(CC) -c $(CFLAGS) $(ACCF) \
-	$(INCLUDE) -o $@ $^
-#======================================
+#==========================================================
+# Files' aliases
+#- output src files' list
+SRC = $(foreach DIR, $(CPPDIR), $(wildcard $(DIR)/*.cpp))
+SRCLIST = $(notdir $(SRC))
+#- output *.cpp => *.o in the same dir
+#- % means operating on each one
+OBJLIST = $(patsubst %.cpp,%.o,$(SRCLIST))
+#- output *.o => \\obj\\*.o
+SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
+#--------------------------------------
+#- output present obj & bin files' list
+OBJTMP = $(wildcard $(OBJDIR)/*.o)
+TGTTMP = $(wildcard $(BINDIR)\\\\*.exe)
+#- combine XXXOBJs into OBJ
+OBJALL = $(SRCOBJ) $(MODOBJ) $(OBJTMP)
+TGTALL = $(TARGET) $(TGTTMP)
+#==========================================================
+# Generate .obj files
+$(OBJDIR)\\%.o: $(CPPDIR_HOME)\\%.cpp
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(FAST) $(INCLUDE) -o $@
+$(OBJDIR)\\%.o: $(CPPDIR_SUB)\\%.cpp
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(FAST) $(INCLUDE) -o $@
+#==========================================================
 # Make options
 .PHONY: all
 all: $(TARGET)
 $(TARGET): $(OBJ)
-	$(CC) -o $(TARGET) $(OBJ) \
-	$(ACCF) $(LINK)
+	$(CC) -o $(TARGET) $(OBJ) $(DEBUG) $(FAST) $(LINK)
 
-.PHONY: clean
+.PHONY: cleanall cleanobj clean
+cleanall: clean cleanobj
+
 clean:
 	rm -f $(TGTALL)
 
-.PHONY: cleanall
-cleanall:
-	rm -f $(OBJALL) $(TGTALL)
+cleanobj:
+	rm -f $(OBJALL)

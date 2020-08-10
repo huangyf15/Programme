@@ -1,7 +1,7 @@
 #======================================
 # Author: Yunfan Huang
 # Institute: Tsinghua University
-# Updated: Aug 07, 2020
+# Updated: Aug 10, 2020
 #======================================
 CODESPEED = DEBUG
 
@@ -10,18 +10,21 @@ PLATFORM = YUNFAN
 COMPILER = GXX
 LANGUAGE = CPP
 
+TARGETNAME = main
+SUBCLSNAME = subclass
+
 WORKDIR = C:\\Users\\Yunfan\\Documents\\Codes\\Roads2PL\\C++\\courses
 MAKEDIR = $(WORKDIR)\\THU01\\proj01
 #==========================================================
 # Directory aliases
-TARGET = $(BINDIR)\\main
+TARGET = $(BINDIR)\\$(TARGETNAME)
 BINDIR = $(MAKEDIR)\\bin
 OBJDIR = $(MAKEDIR)\\obj
 SRCDIR = $(MAKEDIR)\\src
 HEADDIR = $(SRCDIR)\\h
 #- include cpp's directories
 CPPDIR_HOME = $(SRCDIR)\\cpp
-CPPDIR_SUB = $(CPPDIR_HOME)\\subclass
+CPPDIR_SUB = $(CPPDIR_HOME)\\$(SUBCLSNAME)
 CPPDIR = $(CPPDIR_HOME) $(CPPDIR_SUB)
 #==========================================================
 # Platform and Compiler
@@ -53,14 +56,12 @@ endif
 # Compile Options
 ifeq ($(COMPILER), INTEL)
 IMODULE = -module
-ACCF    =
 FAST    = -O3
 CFLAGS  = -O2
 endif
 
 ifeq ($(COMPILER), GXX)
 IMODULE = -J
-ACCF    =
 FAST    = -O3
 CFLAGS  = -std=c++11
 endif
@@ -83,20 +84,18 @@ OBJLIST = $(patsubst %.cpp,%.o,$(SRCLIST))
 #- output *.o => \\obj\\*.o
 SRCOBJ = $(OBJLIST:%.o=$(OBJDIR)\\%.o)
 #--------------------------------------
-#- combine XXXOBJs into OBJ
-OBJ = $(SRCOBJ) $(MODOBJ)
 #- output present obj & bin files' list
 OBJTMP = $(wildcard $(OBJDIR)/*.o)
 TGTTMP = $(wildcard $(BINDIR)\\\\*.exe)
 #- combine XXXOBJs into OBJ
-OBJALL = $(OBJ) $(OBJTMP)
+OBJALL = $(SRCOBJ) $(MODOBJ) $(OBJTMP)
 TGTALL = $(TARGET) $(TGTTMP)
 #==========================================================
-# Generate obj files
+# Generate .obj files
 $(OBJDIR)\\%.o: $(CPPDIR_HOME)\\%.cpp
-	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(FAST) $(INCLUDE) -o $@
 $(OBJDIR)\\%.o: $(CPPDIR_SUB)\\%.cpp
-	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(ACCF) $(INCLUDE) -o $@
+	$(CC) -c $(CFLAGS) $^ $(DEBUG) $(FAST) $(INCLUDE) -o $@
 #==========================================================
 # Make options
 .PHONY: all
