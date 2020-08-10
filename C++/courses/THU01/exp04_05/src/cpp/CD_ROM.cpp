@@ -1,4 +1,4 @@
-#include "computer/CD_ROM.h"
+#include "CD_ROM.h"
 
 CD_ROM::CD_ROM(Interface_Type t, unsigned int c, Install_Method m) {
   _type = t;

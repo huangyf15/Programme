@@ -1,4 +1,4 @@
-#include "computer/CPU.h"
+#include "CPU.h"
 
 CPU::CPU(CPU_Rank r, int f, float v) {
   _rank = r;

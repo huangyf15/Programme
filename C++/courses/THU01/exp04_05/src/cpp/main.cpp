@@ -1,12 +1,18 @@
+/*
 #include "Clock.h"
 #include "Point.h"
 #include "Line.h"
 #include "ExamInfo.h"
-#include "computer/Computer.h"
+*/
+#include "Computer.h"
+
+#include <iostream>
+
+using namespace std;
 
 int main() {
-  cout << endl;
-
+/*
+  // Class basics
   Clock c1(8,10,0);
   Clock c2;
   Clock c3 = c1;
@@ -18,8 +24,7 @@ int main() {
   c2.setHour(10);
   c2.showTime();
 
-  cout << endl;
-
+  // Class combination
   Point p1(1,2);
   Point p2;
   p1.showCoordinate();
@@ -29,17 +34,16 @@ int main() {
   Line l1(p1,p2);
   l1.showLine();
 
-  cout << endl;
-
+  // struct, union and enum
   ExamInfo course1("English", 'B');
   ExamInfo course2("Calculus", true);
   ExamInfo course3("C++ Programming", 85);
   course1.show();
   course2.show();
   course3.show();
+*/
 
-  cout << endl;
-
+  // Data protection ('const')
   CPU cpu1(P6,300,2.8);
   RAM ram1(DDR3,1600,8);
   CD_ROM cd_rom1(SATA,2,built_in);
@@ -47,6 +51,5 @@ int main() {
   computer1.Run();
   computer1.Stop();
 
-  cout << endl;
   return 0;
 }

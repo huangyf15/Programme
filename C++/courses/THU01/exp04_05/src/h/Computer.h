@@ -1,9 +1,9 @@
-#ifndef EXP04_COMPUTER_H_
-#define EXP04_COMPUTER_H_
+#ifndef EXP05_COMPUTER_H_
+#define EXP05_COMPUTER_H_
 
-#include "computer/CPU.h"
-#include "computer/RAM.h"
-#include "computer/CD_ROM.h"
+#include "CPU.h"
+#include "RAM.h"
+#include "CD_ROM.h"
 
 class Computer {
  public:

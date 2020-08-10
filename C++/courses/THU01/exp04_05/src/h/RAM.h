@@ -1,5 +1,5 @@
-#ifndef EXP04_RAM_H_
-#define EXP04_RAM_H_
+#ifndef EXP05_RAM_H_
+#define EXP05_RAM_H_
 
 #include <iostream>
 
@@ -13,7 +13,6 @@ class RAM {
   RAM() : RAM(DDR2,1600,8) { cout << "Construct a RAM! (default)" << endl; }
   RAM(const RAM &r);
   ~RAM() { cout << "Destruct a RAM!" << endl; }
-
 
   RAM_Type getType() const { return _type; }
   unsigned int getFrequency() const { return _frequency; }

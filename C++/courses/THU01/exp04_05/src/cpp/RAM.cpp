@@ -1,4 +1,4 @@
-#include "computer/RAM.h"
+#include "RAM.h"
 
 RAM::RAM(RAM_Type t, unsigned int f, unsigned int s)
     : _type(t), _frequency(f), _size(s) {

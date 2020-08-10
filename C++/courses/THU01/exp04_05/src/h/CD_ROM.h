@@ -1,5 +1,5 @@
-#ifndef EXP04_CD_ROM_H_
-#define EXP04_CD_ROM_H_
+#ifndef EXP05_CD_ROM_H_
+#define EXP05_CD_ROM_H_
 
 #include <iostream>
 

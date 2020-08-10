@@ -1,5 +1,5 @@
-#ifndef EXP04_POINT_H_
-#define EXP04_POINT_H_
+#ifndef EXP05_POINT_H_
+#define EXP05_POINT_H_
 
 class Point{
  public:
