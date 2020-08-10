@@ -16,14 +16,19 @@ const int DAYS_BEFORE_MONTH[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273,
 
 Date::Date(int year, int month, int day)
     : _year(year), _month(month), _day(day) {
-  string dateStr = to_string(_year)+"/"+to_string(_month)+"/"+to_string(_day);
+  string yearStr = to_string(_year);
+  string monthStr = to_string(_month);
+  string dayStr = to_string(_day);
   if (year <= 0 || year > 2500) {
-    Error::error("Invalid year (1~2500): " + dateStr);
+    Error::error("Invalid year (1~2500): " + yearStr);
   } else if (month <= 0 || month > 12) {
-    Error::error("Invalid month: " + dateStr);
+    Error::error("Invalid month: " + yearStr + "/" + monthStr);
   } else if (day <= 0 || day > getMaxDay(year,month)) {
-    Error::error("Invalid day: "+ dateStr);
+    Error::error("Invalid day: "+ yearStr + "/" + monthStr + "/" + dayStr);
   }
+  if (int ms = monthStr.size() < 2) monthStr = string(2 - ms, '0') + monthStr;
+  if (int ds = dayStr.size() < 2) dayStr = string(2 - ds, '0') + dayStr;
+  _date = yearStr + "/" + monthStr + "/" + dayStr;
 }
 
 int Date::getMaxDay(const int &year, const int &month) const {
@@ -34,26 +39,18 @@ int Date::getMaxDay(const int &year, const int &month) const {
   return maxDay;
 }
 
-bool Date::isLeapYear(const int &year) const {
-  if (year % 4 == 0)
-    if (year % 100 == 0)
-      if (year % 400 == 0)
-        return true;
-      else 
-        return false;
-    else
-      return true;
+bool Date::isLeapYear(const int &year) {
+  return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 }
 
 void Date::show() const {
-  cout << _year << "/"
-    << setw(2) << setfill('0') << _month << "/"
-    << setw(2) << setfill('0') << _day << endl;
+  cout << _date << endl;
 }
 
 int Date::distance_abs() const {
   int yr_pass = _year - 1;
-  int distance = 365 * yr_pass + DAYS_BEFORE_MONTH[_month] + _day;
+  int mo_pass = _month - 1;
+  int distance = 365 * yr_pass + DAYS_BEFORE_MONTH[mo_pass] + _day;
   distance += floor(yr_pass/4.0) - floor(yr_pass/100.0) + floor(yr_pass/400.0);
   if ((_month > 2) && isLeapYear(_year))
     distance += 1;
