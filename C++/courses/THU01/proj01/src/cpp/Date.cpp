@@ -43,6 +43,12 @@ bool Date::isLeapYear(const int &year) {
   return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 }
 
+Date Date::read() {
+  int year, month, day;
+  cin >> year >> month >> day;
+  return Date(year, month, day);
+}
+
 int Date::distance_abs() const {
   int yr_pass = _year - 1;
   int mo_pass = _month - 1;
@@ -55,4 +61,8 @@ int Date::distance_abs() const {
 
 int Date::operator- (const Date &anotherDate) const {
   return this->distance_abs() - anotherDate.distance_abs();
+}
+
+bool Date::operator< (const Date &anotherDate) const {
+  return (this->distance_abs() < anotherDate.distance_abs());
 }

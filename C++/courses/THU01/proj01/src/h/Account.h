@@ -5,8 +5,27 @@
 #include "Accumulator.h"
 
 #include <string>
+#include <map>
 
 using namespace std;
+
+class Account;
+
+class AccountRecord {
+ public:
+  AccountRecord(const Date &date, const Account *account, double amount,
+                double balance, const string &desc);
+  void show() const;
+
+ private:
+  Date date;
+  const Account *account;
+  double amount;
+  double balance;
+  string desc;
+};
+
+typedef multimap<Date, AccountRecord> RecordMap;
 
 class Account {
  public:
@@ -20,6 +39,7 @@ class Account {
                         const string &desc) = 0;
   virtual void settle(const Date &date) = 0;
   virtual void show() const;
+  static void query(const Date &begin, const Date &end);
 
  protected:
   Account(Date date, string id);
@@ -29,6 +49,7 @@ class Account {
   string _id;
   double _balance;
   static double _total;
+  static RecordMap recordMap;
 };
 
 class SavingsAccount : public Account {

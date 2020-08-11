@@ -1,17 +1,22 @@
 #include "Account.h"
-#include "Array.h"
 #include "Date.h"
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
+struct deleter {
+  template <class T> void operator () (T* p) { delete p; }
+};
+
 int main() {
   Date date(2008,11,1);
-  Array<Account*> accounts(0);
+  vector<Account *> accounts;
 
-  cout << ">> Help:\n\t(a) add account \n\t(d) deposit \n\t(w) withdraw \n\t(s) show "
-       << "\n\t(c) change day \n\t(n) next month \n\t(e) exit \n" << endl;
+  cout << ">> Help:\n\t(a) add account \n\t(s) show \n\t(e) exit \n\t(q) query"
+       << "\n\t(c) change day \n\t(n) next month \n\t(d) deposit \n\t(w) withdraw " << endl;
   char cmd;
   do {
     cout << date.getDate() << "\tTotal: " << Account::getTotal() << "\tcommand> ";
@@ -21,6 +26,7 @@ int main() {
     double amount, credit, rate, fee;
     string id, desc;
     Account *account;
+    Date date1, date2;
 
     cin >> cmd;
     switch (cmd) {
@@ -42,26 +48,25 @@ int main() {
           cout << "Invalid type of account. Input again." << endl;
         }
         if ((type == 's') || (type == 'c')) {
-          accounts.resize(accounts.getSize() + 1);
-          accounts[accounts.getSize() - 1] = account;
+          accounts.push_back(account);
         }
         break;
       case 'd':
         cout << "Please successively input: index amount "
-              << "[Press Enter to Confirm]" << endl;
+             << "[Press Enter to Confirm]" << endl;
         cin >> index >> amount;
         getline(cin, desc);
         accounts[index]->deposit(date, amount, desc);
         break;
       case 'w':
         cout << "Please successively input: index amount "
-              << "[Press Enter to Confirm]" << endl;
+             << "[Press Enter to Confirm]" << endl;
         cin >> index >> amount;
         getline(cin, desc);
         accounts[index]->withdraw(date, amount, desc);
         break;
       case 's':
-        for (int i = 0; i < accounts.getSize(); i++) {
+        for (int i = 0; i < accounts.size(); i++) {
           cout << "[" << i << "]";
           accounts[i]->show();
           cout << endl;
@@ -81,15 +86,22 @@ int main() {
         if (date.getMonth() == 12)
           date = Date(date.getYear() + 1, 1, 1);
         else
-          date = Date(date.getYear(), date.getMonth()+1, 1);
-        for (int i = 0; i < accounts.getSize(); i++)
-          accounts[i]->settle(date);
+          date = Date(date.getYear(), date.getMonth() + 1, 1);
+        for (vector<Account*>::iterator iter = accounts.begin(); 
+                                        iter != accounts.end(); ++iter)
+          (*iter)->settle(date);
+        break;
+      case 'q':
+        cout << "Please input the beginning date: year month day "
+             << "[Press Enter to Confirm]" << endl;
+        date1 = Date::read();
+        cout << "Please input the ending date: year month day "
+             << "[Press Enter to Confirm]" << endl;
+        date2 = Date::read();
+        Account::query(date1, date2);
         break;
     }
   } while (cmd != 'e');
-
-  for (int i = 0; i < accounts.getSize(); i++)
-    delete accounts[i];
-
+  for_each(accounts.begin(), accounts.end(), deleter());
   return 0;
 }
