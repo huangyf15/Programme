@@ -13,8 +13,9 @@ class Date {
   const std::string &getDate() const { return _date; }
 
   int getMaxDay(const int &year, const int &month) const;
-  static bool isLeapYear(const int &year);
-  static Date read();
+  static bool isLeapYear(const int &year) {
+    return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+  }
 
   // Return relative distance to 1/01/01
   int distance_abs() const;
@@ -26,5 +27,9 @@ class Date {
   int _year, _month, _day;
   std::string _date;
 };
+
+std::istream & operator >> (std::istream &in, Date &date);
+
+std::ostream & operator << (std::ostream &out, const Date &date);
 
 #endif

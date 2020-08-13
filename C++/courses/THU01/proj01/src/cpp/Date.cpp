@@ -39,16 +39,6 @@ int Date::getMaxDay(const int &year, const int &month) const {
   return maxDay;
 }
 
-bool Date::isLeapYear(const int &year) {
-  return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
-}
-
-Date Date::read() {
-  int year, month, day;
-  cin >> year >> month >> day;
-  return Date(year, month, day);
-}
-
 int Date::distance_abs() const {
   int yr_pass = _year - 1;
   int mo_pass = _month - 1;
@@ -65,4 +55,17 @@ int Date::operator- (const Date &anotherDate) const {
 
 bool Date::operator< (const Date &anotherDate) const {
   return (this->distance_abs() < anotherDate.distance_abs());
+}
+
+istream & operator >> (istream &in, Date &date) {
+	int year, month, day;
+	char c1, c2;
+	in >> year >> c1 >> month >> c2 >> day;
+	date = Date(year, month, day);
+	return in;
+}
+
+ostream & operator << (ostream &out, const Date &date) {
+	out << date.getDate();
+	return out;
 }

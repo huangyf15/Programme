@@ -4,6 +4,7 @@
 #include <cmath>
 #include <utility>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 using namespace std::rel_ops;
@@ -13,12 +14,16 @@ AccountRecord::AccountRecord(const Date &date, const Account *account,
     : date(date), account(account), amount(amount), balance(balance), desc(desc) {}
 
 void AccountRecord::show() const {
-  cout << date.getDate() << "\t#" << account->getId() << "\t" << amount 
-       << "\t" << balance << "\t" << desc << endl;
+  cout << date << "\t#" << account->getId()
+       << setiosflags(ios_base::right) << setiosflags(ios::fixed) << setprecision(2) 
+       << "\tamount: " << setw(10) << amount << "\tbalance: " << setw(10) << balance
+       << "\tmessage: " << desc << endl;
 }
 
 double Account::_total = 0;
+
 RecordMap Account::recordMap;
+
 Account::Account(Date date, string id) : _id(id), _balance(0) {
   cout << date.getDate() << "\t#" << id << " is created." << endl;
 }
@@ -30,13 +35,11 @@ void Account::record(const Date &date, const double &amount,
   _total += amount_floor;
 	AccountRecord record(date, this, amount_floor, _balance, desc);
 	recordMap.insert(make_pair(date, record));
-  cout << ">> " << date.getDate() << "\t#" << _id
-    << "\tamount: " << amount_floor << "\tbalance: " << _balance
-    << "\tmessage: " << desc << endl;
+  record.show();
 }
 
-void Account::show() const {
-  cout << "\t#" << _id << "\tBalance: " << _balance;
+void Account::show(ostream &out) const {
+  out << "\t#" << _id << "\tBalance: " << _balance;
 }
 
 void Account::query(const Date& begin, const Date& end) {
@@ -76,11 +79,6 @@ void SavingsAccount::settle(const Date &date) {
   }
 }
 
-void SavingsAccount::show() const {
-  Account::show();
-  cout << endl;
-}
-
 CreditAccount::CreditAccount(Date date, string id, double credit, 
                              double rate, double fee)
     : Account(date,id), _credit(credit), _rate(rate), _fee(fee), _acc(date,0) {}
@@ -111,7 +109,7 @@ void CreditAccount::settle(const Date &date) {
   }
 }
 
-void CreditAccount::show() const {
-  Account::show();
-  cout << "\tAvailable credit: " << getAvailableCredit() << endl;
+void CreditAccount::show(ostream &out) const {
+  Account::show(out);
+  out << "\tAvailable credit: " << getAvailableCredit();
 }

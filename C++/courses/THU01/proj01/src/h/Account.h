@@ -6,6 +6,7 @@
 
 #include <string>
 #include <map>
+#include <istream>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class AccountRecord {
 
  private:
   Date date;
-  const Account *account;
+  const Account* account;
   double amount;
   double balance;
   string desc;
@@ -38,7 +39,7 @@ class Account {
   virtual void withdraw(const Date &date, double amount, 
                         const string &desc) = 0;
   virtual void settle(const Date &date) = 0;
-  virtual void show() const;
+  virtual void show(ostream &out) const;
   static void query(const Date &begin, const Date &end);
 
  protected:
@@ -52,6 +53,11 @@ class Account {
   static RecordMap recordMap;
 };
 
+inline ostream & operator << (ostream &out, const Account &account) {
+  account.show(out);
+  return out;
+}
+
 class SavingsAccount : public Account {
  public:
   SavingsAccount(Date date, string id, double rate);
@@ -61,7 +67,6 @@ class SavingsAccount : public Account {
                        const string &desc);
   virtual void withdraw(const Date &date, double amount, const string &desc);
   virtual void settle(const Date &date);
-  virtual void show() const;
 
  private:
   double _rate;
@@ -89,7 +94,7 @@ class CreditAccount : public Account {
                        const string &desc);
   virtual void withdraw(const Date &date, double amount, const string &desc);
   virtual void settle(const Date &date);
-  virtual void show() const;
+  virtual void show(ostream &out) const;
 
  private:
   double _rate;
