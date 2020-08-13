@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-  Date date(2008,11,1);
+  Date date(2008, 11, 1);
   Controller controller(date);
   string cmdLine;
   const char *FILE_NAME = "commands.txt";
