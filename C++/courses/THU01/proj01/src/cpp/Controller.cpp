@@ -1,5 +1,6 @@
 #include "Controller.h"
 
+#include <assert.h>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -41,17 +42,14 @@ bool Controller::runCommand(const string &cmdLine) {
       if (type == 's') {
         str >> rate;
         account = new SavingsAccount(date, id, rate);
-        accounts.push_back(account);
-        return true;
       } else if (type == 'c'){
         str >> credit >> rate >> fee;
         account = new CreditAccount(date, id, credit, rate, fee);
-        accounts.push_back(account);
-        return true;
       } else {
-        cout << "Invalid type of account. Input again." << endl;
-        return false;
+        throw runtime_error("Invalid type of account\n");
       }
+      accounts.push_back(account);
+      return true;
     case 'd':
       if (helpFlag) {
         cout << "Please successively input: index amount [Enter]\n" << endl;
@@ -86,9 +84,9 @@ bool Controller::runCommand(const string &cmdLine) {
       }
       str >> day;
       if (day < date.getDay())
-        cout << "You cannot specify a previous day!\n";
+        throw runtime_error("Cannot specify a previous day\n");
       else if (day > date.getMaxDay(date.getYear(), date.getMonth()))
-        cout << "Invalid day for present month!\n";
+        throw runtime_error("Invalid day for present month\n");
       else
         date = Date(date.getYear(), date.getMonth(), day);
       return true;
@@ -107,7 +105,7 @@ bool Controller::runCommand(const string &cmdLine) {
       return true;
     case 'q':
       if (helpFlag) {
-        cout << "Please successively input: date_begin, date_ending"
+        cout << "Please successively input: date_begin date_ending [Enter]"
              << "\n\tdate = year/month/day" << "\n" << endl;
         return false;
       }

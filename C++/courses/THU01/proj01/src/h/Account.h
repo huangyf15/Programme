@@ -7,6 +7,7 @@
 #include <string>
 #include <map>
 #include <istream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -40,6 +41,7 @@ class Account {
                         const string &desc) = 0;
   virtual void settle(const Date &date) = 0;
   virtual void show(ostream &out) const;
+  void error(const string &msg) const;
   static void query(const Date &begin, const Date &end);
 
  protected:
@@ -63,8 +65,7 @@ class SavingsAccount : public Account {
   SavingsAccount(Date date, string id, double rate);
   double getRate() const { return _rate; }
 
-  virtual void deposit(const Date &date, const double &amount, 
-                       const string &desc);
+  virtual void deposit(const Date &date, const double &amount, const string &desc);
   virtual void withdraw(const Date &date, double amount, const string &desc);
   virtual void settle(const Date &date);
 
@@ -90,8 +91,7 @@ class CreditAccount : public Account {
       return _credit;
   };
 
-  virtual void deposit(const Date &date, const double &amount, 
-                       const string &desc);
+  virtual void deposit(const Date &date, const double &amount, const string &desc);
   virtual void withdraw(const Date &date, double amount, const string &desc);
   virtual void settle(const Date &date);
   virtual void show(ostream &out) const;
@@ -101,6 +101,15 @@ class CreditAccount : public Account {
   double _credit;
   double _fee;
   Accumulator _acc;
+};
+
+class AccountException : public std::runtime_error {
+ public:
+  AccountException(const Account *account, const string &msg)
+      : runtime_error(msg), _account(account) {}
+  const Account *getAccount() const { return _account; }
+ private:
+  const Account *_account;
 };
 
 #endif

@@ -1,5 +1,4 @@
 #include "Account.h"
-#include "Error.h"
 
 #include <cmath>
 #include <utility>
@@ -39,7 +38,13 @@ void Account::record(const Date &date, const double &amount,
 }
 
 void Account::show(ostream &out) const {
-  out << "\t#" << _id << "\tBalance: " << _balance;
+  out << "\t#" << setw(8) << setiosflags(ios_base::left) << _id
+      << setiosflags(ios_base::right) << setiosflags(ios::fixed) << setprecision(2) 
+      << "\tBalance: " << setw(10) << _balance;
+}
+
+void Account::error(const string &msg) const {
+  throw AccountException(this, msg);
 }
 
 void Account::query(const Date& begin, const Date& end) {
@@ -63,7 +68,7 @@ void SavingsAccount::deposit(const Date &date, const double &amount,
 void SavingsAccount::withdraw(const Date &date, double amount, 
                               const string &desc) {
   if (amount > getBalance())
-    Error::error("Not enough money");
+    error("Not enough money");
   else
     record(date, -amount, desc);
     _acc.change(date, getBalance());
@@ -92,7 +97,7 @@ void CreditAccount::deposit(const Date &date, const double &amount,
 void CreditAccount::withdraw(const Date &date, double amount, 
                              const string &desc) {
   if (amount - getBalance() > _credit)
-    Error::error("Not enough credit");
+    error("Not enough credit");
   else
     record(date, -amount, desc);
     _acc.change(date, getDebt());
