@@ -29,10 +29,11 @@
 
 ## Chapter 05: Classes/Struct, Static/Extern, Const, Inheritance
 
-* Class vs Struct
+* Class vs Struct in C++
   * Essentially NO difference except the default visibility.
-  * Class: usually with massive fucntionality, i.e. inheritance
+  * Class: usually with massive functionality, i.e. inheritance
   * Struct: usually only used to save data.
+    * In C, struct does not have function members, but could have pointers to functions to realize the same functionality.
 * Lifetime and scope
   * Static var and fun (take class for example; struct is the same)
     * Outside classes (lifetime: static, scope: translation unit) 
