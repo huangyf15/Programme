@@ -22,10 +22,10 @@ int main() {
 
   ofstream fileOut(FILE_NAME, ios_base::app);
   cout << ">> Help:"
-        << "\n  (a) add account \t(q) query      \t(s) show    \t(e) exit    "
-        << "\n  (c) change day  \t(n) next month \t(d) deposit \t(w) withdraw"
-        << "\n  (h) help (see also 'x -h')"
-        << "\n" << endl;
+       << "\n  (a) add account \t(q) query      \t(s) show    \t(e) exit    "
+       << "\n  (c) change day  \t(n) next month \t(d) deposit \t(w) withdraw"
+       << "\n  (h) help (see also 'x -h')"
+       << "\n" << endl;
   while (!controller.isEnd()) {
     cout << controller.getDate() << "\tTotal: " << Account::getTotal() << "\tcommand> ";
     string cmdLine;
