@@ -7,7 +7,25 @@ using namespace std;
 ofstream T("output.out");
 */
 
+class CException {
+public:
+	CException() {}
+  virtual ~CException() {}
+	void Reason() {cout << "CException" << endl;}
+};
+
+void fun() {
+	throw CException();
+}
+
 int main(int argc, char* argv[]) {
+  try {
+    fun();
+  } catch (CException &ce) {
+    ce.Reason();
+  }
+
+/*
   ifstream in;
   ofstream out("output.txt");
   in.open(argv[1], ios::binary);
@@ -22,6 +40,8 @@ int main(int argc, char* argv[]) {
     cout << ++line << ": " << buf << endl;
     out << line << ": " << buf;
   }
+*/
+
 /*
   D(int i = 53;)
   D(float f = 4700113.141593;)
@@ -82,4 +102,6 @@ int main(int argc, char* argv[]) {
   D(T.unsetf(ios::showpoint);)
   D(T.unsetf(ios::unitbuf);)
 */
+
+  return 0;
 }
