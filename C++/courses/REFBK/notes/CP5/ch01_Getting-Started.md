@@ -1,15 +1,18 @@
 # 第一章 开始
 
-## 熟悉编译器
+> Last updated: Aug 18, 2020
+> Author: Yunfan Huang
 
-**g++**：
+### 熟悉编译器
+
+#### g++
 
 - 编译：`g++ --std=c++11 ch01.cpp -o main`
 - 运行：`./prog1`
 - 查看运行状态：`echo $?`
 - 编译多个文件:`g++ ch2.cpp Sales_item.cc -o main`
 
-输入 `g++ --help`，查看编译器选项：
+输入 `g++ --help`，查看编译器选项
 
 ```
 Usage: g++ [options] file...
@@ -68,8 +71,9 @@ Options:
 
 ```
 
-输入 `g++ -v --help`可以看到更完整的指令。
-例如还有些常用的：
+
+输入 `g++ -v --help`可以看到更完整的指令，如有些常用的：
+
 ```
 -h FILENAME, -soname FILENAME: Set internal name of shared library
 -I PROGRAM, --dynamic-linker PROGRAM: Set PROGRAM as the dynamic linker to use
@@ -77,26 +81,34 @@ Options:
 -L DIRECTORY, --library-path DIRECTORY: Add DIRECTORY to library search path
 ```
 
-**获得程序状态**:
+#### 获得程序状态
 
 - windows: ``echo %ERRORLEVEL%``
 - UNIX: ``echo $?``
 
-## IO
+#### 使用文件重定向
 
-- ```#include <iostream>```
-- ```std::cout << "hello"```
-- ```std::cin >> v1```
+``./main <infile >outfile``
 
-记住`>>`和`<<`返回的结果都是左操作数，也就是输入流和输出流本身。
+#### 键盘输入文件结束符
 
-**endl**：这是一个被称为**操纵符**（manipulator）的特殊值，效果是结束当前行，并将设备关联的缓冲区（buffer）中的内容刷到设备中。
+* UNIX 和 Mac 下：`ctrl+d`
 
-UNIX和Mac下键盘输入文件结束符：`ctrl+d`，Windows下：`ctrl+z`
+* Windows下：`ctrl+z`
 
-**头文件**：类的类型一般存储在头文件中，标准库的头文件使用`<>`，非标准库的头文件使用`""`。申明写在`.h`文件，定义实现写在`.cpp`文件。
+### 程序编写
 
-**避免多次包含同一头文件**：
+```c++
+#include <iostream>           // 载入标准库 iostream 的头文件
+#include "Sales_item.h"       // 载入自定义头文件 Sales_item.h
+Sales_item v1;                // 定义 Sales_item 实例 v1
+std::cout << "hello" << endl; // 输出 hello 并换行
+std::cin >> v1;               // 读入变量 v1
+```
+
+#### 头文件
+
+类的类型一般存储在头文件中，标准库的头文件使用`<>`，非标准库的头文件使用`""`。申明写在`.h`文件，定义实现写在`.cpp`文件。为了避免多次包含同一头文件，需要加入预编译指令：
 
 ```cpp
 #ifndef SALESITEM_H
@@ -105,28 +117,25 @@ UNIX和Mac下键盘输入文件结束符：`ctrl+d`，Windows下：`ctrl+z`
 #endif
 ```
 
-**成员函数（类方法）**：使用`.`调用。
-
-**命名空间（namespace）**：使用作用域运算符`::`调用。
-
-## 注释
+#### 注释
 
 - 单行注释： `//`
-- 多行注释： `/**/`。编译器将`/*`和`*/`之间的内容都作为注释内容忽略。注意不能嵌套。
+- 多行注释： `/*...*/`。编译器将`/*`和`*/`之间的内容都作为注释内容忽略。注意不能嵌套。
 
-## while语句
+#### 输入输出
 
-循环执行，（直到条件（condition）为假。
+记住`>>`和`<<`返回的结果都是左操作数，也就是输入流和输出流本身。**`endl`**是一个被称为**操纵符**（manipulator）的特殊值，效果是结束当前行，并将设备关联的缓冲区（buffer）中的内容刷到设备中。
 
-## for语句
+#### 类与命名空间
 
-循环头由三部分组成：
+* 成员函数（类方法）：使用`.`调用。
+* 命名空间（`namespace`）：使用作用域运算符`::`调用。
 
-- 一个初始化语句（init-statement）
-- 一个循环条件（condition）
-- 一个表达式（expression）
+#### 两类典型循环语句
 
-## 使用文件重定向
-
-``./main <infile >outfile``
+* while 语句：循环执行，直到条件（condition）为假。
+* for 语句：循环头由三部分组成：
+  * 一个初始化语句（initialization-statement）
+  * 一个循环条件（condition）
+  * 一个表达式（expression）
 
