@@ -1,3 +1,6 @@
+#ifndef BUBBLE_NUMERICSEQ_H_
+#define BUBBLE_NUMERICSEQ_H_
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -11,3 +14,5 @@ ostream &operator << (ostream &, const vector<int> &);
 void swap(int &, int &, ofstream * = nullptr);
 
 void bubble_sort(vector<int> &, ofstream * = nullptr);
+
+#endif
