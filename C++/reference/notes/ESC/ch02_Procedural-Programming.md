@@ -1,6 +1,6 @@
 # 第二章 面向过程的编程风格
 
-> Last updated: Aug 25, 2020
+> Last updated: Aug 26, 2020
 > Author: Yunfan Huang
 
 ### 本章内容
@@ -8,8 +8,13 @@
 学习函数基本编写原则，包括：
 
 * 函数调用、默认参数值、局部静态对象、`inline`函数
-* 函数重载、函数模板、函数指针
-* 程序案例：`bubble`、`fibon`
+* 函数重载、函数模板、函数指针、`extern`和`const`对象
+
+#### 程序案例
+
+* `bubble`：指针参数和引用参数的使用、参数默认值
+* `fibon`：局部静态对象、`inline`函数、函数重载、函数模板、函数指针
+* `const`：`extern`、`const`和`extern const`对象辨析
 
 ### 指针参数和引用参数的异同
 
@@ -20,6 +25,7 @@
 
 ### 作用域及范围
 
+* 程序案例：`fibon`
 * 为对象分配的内存的存活时间称为储存期（storage duration）或范围（extent）：static extent, local extent, dynamic extent
   * static extent 对象的内存在 `main()` 开始执行之前就已分配好，可一直存在至程序结束
   * dynamic extent 对象在运行时通过 `new` 表达式从 heap 分配而来，存活至 `delete` 释放为止
@@ -29,7 +35,8 @@
 
 ### inline/extern/const 对象的辨析
 
-* `inline`函数：定义可以被多个程序代码文件取得，**属于“只定义一次”规则的例外**
+* 程序案例：`const`
+* ``inline`函数：定义可以被多个程序代码文件取得，**属于“只定义一次”规则的例外**
   * 动机：为了能够扩展函数的内容，编译器在每个调用点上都能取得其定义，应在头文件中声明为`inline`函数并定义
 * `extern`对象：只进行声明而不进行定义（推迟定义位置），**服从“只定义一次”规则**
   * 动机：为了处理在 file scope 内定义的并且可能被多个文件访问的对象，应在头文件中将其声明为`extern`对象
