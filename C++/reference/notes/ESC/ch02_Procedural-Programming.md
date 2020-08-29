@@ -12,9 +12,9 @@
 
 #### 程序案例
 
-* `bubble`：指针参数和引用参数的使用、参数默认值
-* `fibon`：局部静态对象、`inline`函数、函数重载、函数模板、函数指针
-* `const`：`extern`、`const`和`extern const`对象辨析
+* `sort_bubble`：指针参数和引用参数的使用、参数默认值
+* `cal_seq`：局部静态对象、`inline`函数、函数重载、函数模板、函数指针
+* `def_const`：`extern`、`const`和`extern const`对象辨析
 
 ### 指针参数和引用参数的异同
 

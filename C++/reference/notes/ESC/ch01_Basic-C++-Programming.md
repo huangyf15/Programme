@@ -15,7 +15,7 @@
 
 #### 程序案例
 
-* `cerr`：`cout`/`cerr`/`clog`与文件重定向
+* `output_cerr`：`cout`/`cerr`/`clog`与文件重定向
 
 ### 文件的读写
 
