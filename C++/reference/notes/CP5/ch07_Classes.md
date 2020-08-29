@@ -1,6 +1,7 @@
 # 第七章 类
 
 > Last updated: Aug 22, 2020
+>
 > Author: Yunfan Huang
 
 ### 定义抽象数据类型

@@ -87,8 +87,14 @@
 
 ### 关联容器
 
-* `map`容器：
-* `set`容器：
+* `map`容器：查询`map`内是否存在某个 *key*，有三种方法
+  * 将 *key* 作索引使用，但若 *key* 不在 `map` 内则会将其自动添加进`map`并且其对应 *value* 将被设置为所属类型的默认值
+  * 使用`map.find()`函数返回一个 iterator，若 *key* 在`map`中则会指向 *key/value* 形成的一个`pair`，否则会返回`end()`
+  * 使用`map.count()`函数返回某特定项在`map`中的个数，由于任何 *key* 值在`map`中至多只有一份，因此返回值非 0 则 1
+* `set`容器：整型`set`容器`iset`的典型操作包括
+  * 加入单一元素：`iset.insert(ival);`
+  * 加入某个范围的元素：`iset.insert(vec.begin(), vec.end());`
+  * 泛型算法：`set_intersection()`，`set_union()`，`set_difference()`，`set_symmetric_difference()`
 
 ### 泛型算法的使用和设计
 
