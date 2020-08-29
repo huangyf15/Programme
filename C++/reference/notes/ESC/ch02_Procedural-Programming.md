@@ -1,6 +1,7 @@
 # 第二章 面向过程的编程风格
 
 > Last updated: Aug 26, 2020
+>
 > Author: Yunfan Huang
 
 ### 本章内容

@@ -1,6 +1,7 @@
 # 第三章 泛型编程风格
 
 > Last updated: Aug 29, 2020
+>
 > Author: Yunfan Huang
 
 ### 本章内容
@@ -16,8 +17,8 @@
 
 * `find_where`：普通迭代器 Iterator
 * `search_if`：顺序容器和泛型算法的使用
-* `filter_comp`：函数对象及其适配器和泛型算法的设计
 * `sort_io`：输入/输出迭代器 iostream Iterator
+* `filter_comp`：函数对象及其适配器和泛型算法的设计
 
 ### 迭代器与泛型算法简介
 
@@ -84,15 +85,20 @@
   * vector, list 和 deque：`push_back()`，`pop_back()`，`insert()`，`erase()`
   * list 和 deque：`push_front()`，`pop_front()`
 
-#### 泛型算法的使用和设计
+### 关联容器
 
-##### 使用泛型算法
+* `map`容器：
+* `set`容器：
+
+### 泛型算法的使用和设计
+
+#### 使用泛型算法
 
 ```c++
 #include <algorithm>
 ```
 
-##### 设计泛型算法
+#### 设计泛型算法
 
 * 目标任务：用户给定一个整型 vector，返回一个新的 vector，其中内含原 vector 之中小于 10 的所有数值
 * 泛型算法的架构设计
@@ -104,11 +110,6 @@
   * 求反器（negator）：对 function object  的真伪值取反，如`not1`、`not2`
   * 插入适配器（insertion adapter）：用插入操作代替容器的赋值运算符，以减少目的端容器的空间浪费，如`back_inserter`、`inserter`、`front_inserter`
   * 函数包装器（function wrapper）：可用于设计通用的函数执行接口，原理上是通过函数指针实现的，如`function`是 STL 提供的通用多态函数封装器
-* 函数指针和函数对象辨析
+* **函数指针和函数对象辨析**
   * 函数指针：是一个指针变量，该指针指向函数地址
   * 函数对象：是一个对象（类的实例），该对象具有某个函数的功能
-
-### 关联容器
-
-* `map`容器：
-* `set`容器：

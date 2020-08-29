@@ -2,7 +2,12 @@
 
 ## File Structure
 
-  * `project`: 示例用的项目文件夹
+  * `courses`：C++ 课程相关
+  * `reference`：C++ 参考书相关
+        * `notes`：学习笔记
+        * `codes`：示例代码
+        * `ref`：参考书电子版
+  * `project`：示例用的项目文件夹（典型文件结构如下）
       * `src`：存放源代码
         * `h`：存放头文件
         * `cpp`：存放源文件
@@ -11,7 +16,6 @@
       * `test`：存放 `DEBUG` 阶段的测试程序
       * `data`：存放数值结果及其后处理程序
       * `makefile & run.sh`：项目自动编译工具文件
-  * `courses`: C++ courses
 
 ## Usage
 
