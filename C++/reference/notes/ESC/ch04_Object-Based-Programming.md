@@ -38,4 +38,3 @@
   * function call 运算符可以接受任意个数的参数，比如可以用来支持`Matrix`的多维度下标操作，因为语言所提供的下标运算符仅能接受一个参数。
 * 指向类的成员函数的指针
   * `obj.*pf`/`pobj->*pf`是针对**类对象**`obj`/**指向类对象的指针**`pobj`的 pointer to member selection 运算符，可用于通过函数指针`pf`调用`obj`的成员函数。
-
