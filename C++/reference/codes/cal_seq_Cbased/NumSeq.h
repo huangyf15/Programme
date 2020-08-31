@@ -1,3 +1,6 @@
+#ifndef __NUMSEQ_H__
+#define __NUMSEQ_H__
+
 #include <map>
 #include <string>
 #include <vector>
@@ -212,3 +215,5 @@ inline void display(ostream &os, const num_sequence &ns, int pos, int elem_val) 
 }
 
 ostream &operator << (ostream &, const num_sequence &);
+
+#endif
