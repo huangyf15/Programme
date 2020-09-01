@@ -26,7 +26,6 @@
 
 ### 作用域及范围
 
-* 程序案例：`fibon`
 * 为对象分配的内存的存活时间称为储存期（storage duration）或范围（extent）：static extent, local extent, dynamic extent
   * static extent 对象的内存在 `main()` 开始执行之前就已分配好，可一直存在至程序结束
   * dynamic extent 对象在运行时通过 `new` 表达式从 heap 分配而来，存活至 `delete` 释放为止
@@ -36,7 +35,6 @@
 
 ### static/inline/extern/const 对象的辨析
 
-* 程序案例：`const`
 * `inline`函数：定义可以被多个程序代码文件取得，**属于“只定义一次”规则的例外**
   * 动机：为了能够扩展函数的内容，编译器在每个调用点上都能取得其定义，应在头文件中声明为`inline`函数并定义
 * `extern`对象：只进行声明而不进行定义（推迟定义位置），**服从“只定义一次”规则**
