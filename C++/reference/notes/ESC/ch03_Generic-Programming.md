@@ -6,7 +6,7 @@
 
 ### 本章内容
 
-学习使用STL（Standard Template Library），它主要由两种组件组成：
+学习使用 STL（Standard Template Library），它主要由两种组件组成：
 
 * 容器（container）：`vector`、`list`、`set`、`map`等类
   * 顺序容器（sequential container）：`vector`、`list`，主要进行`iterate`操作

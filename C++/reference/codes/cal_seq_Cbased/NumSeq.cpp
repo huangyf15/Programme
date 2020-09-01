@@ -2,22 +2,22 @@
 
 using namespace std;
 
-// const int num_sequence::cnt_seq = 7;
-const int num_sequence::max_seq = 64;
-vector<vector<unsigned int>> num_sequence::seq(cnt_seq);
-map<string,num_sequence::ns_type> num_sequence::seq_map;
+// const int NumSequence::cnt_seq = 7;
+const int NumSequence::max_seq = 64;
+vector<vector<unsigned int>> NumSequence::seq(cnt_seq);
+map<string,NumSequence::ns_type> NumSequence::seq_map;
 
-num_sequence::PtrType num_sequence::func_tbl[cnt_seq] = {
+NumSequence::PtrType NumSequence::func_tbl[cnt_seq] = {
   0,
-  &num_sequence::fibonacci,
-  &num_sequence::pell,
-  &num_sequence::lucas,
-  &num_sequence::triangular,
-  &num_sequence::square,
-  &num_sequence::pentagonal
+  &NumSequence::fibonacci,
+  &NumSequence::pell,
+  &NumSequence::lucas,
+  &NumSequence::triangular,
+  &NumSequence::square,
+  &NumSequence::pentagonal
 };
 
-ostream &operator << (ostream &os, const num_sequence &ns) {
+ostream &operator << (ostream &os, const NumSequence &ns) {
   ns.print(os);
   return os;
 }
@@ -32,7 +32,7 @@ ostream &operator << (ostream &os, const num_sequence &ns) {
  *    Obj.is_elem( 5 ); // false
  *    Obj.is_elem( 4 ); // false
  */
-bool num_sequence::is_elem(unsigned int elem) {
+bool NumSequence::is_elem(unsigned int elem) {
   if (!check_integrity(_length + _beg_pos - 1))
     return false;
   iterator bit, endit;
@@ -52,7 +52,7 @@ bool num_sequence::is_elem(unsigned int elem) {
  *     Obj.pos_elem( very-large-instance ); // your choice
  *     Obj.pos_elem( 4 ); // return 0
  */
-int num_sequence::pos_elem(unsigned int elem) {
+int NumSequence::pos_elem(unsigned int elem) {
   cout << "pos_elem( " << elem << " )\n";
   if (!check_integrity(1))
     return 0;
@@ -69,7 +69,7 @@ int num_sequence::pos_elem(unsigned int elem) {
     return distance(_elem->begin(), iter) + 1;
 }
 
-int num_sequence::_calc_pos(unsigned int elem) {
+int NumSequence::_calc_pos(unsigned int elem) {
   // presumption is that check_integrity() has passed
   int pos = _elem->size() - 1;
 
@@ -87,7 +87,7 @@ int num_sequence::_calc_pos(unsigned int elem) {
 }
 
 // implement of specific number sequences
-void num_sequence::fibonacci(int pos) {   
+void NumSequence::fibonacci(int pos) {   
   if (pos <= 0 || pos > max_seq)
     return;
 
@@ -109,7 +109,7 @@ void num_sequence::fibonacci(int pos) {
   }
 }
   
-void num_sequence::pell(int pos) {    
+void NumSequence::pell(int pos) {    
   if (pos <= 0 || pos > max_seq)
     return;
 
@@ -131,7 +131,7 @@ void num_sequence::pell(int pos) {
   }
 }
   
-void num_sequence::lucas(int pos) {     
+void NumSequence::lucas(int pos) {     
   if (pos <= 0 || pos > max_seq)
     return;
 
@@ -153,7 +153,7 @@ void num_sequence::lucas(int pos) {
   }
 }    
   
-void num_sequence::triangular(int pos) {
+void NumSequence::triangular(int pos) {
   if (pos <= 0 || pos > max_seq)
     return;
 
@@ -165,7 +165,7 @@ void num_sequence::triangular(int pos) {
   }
 }
 
-void num_sequence::square(int pos) {
+void NumSequence::square(int pos) {
   if (pos <= 0 || pos > max_seq)
     return;
 
@@ -177,7 +177,7 @@ void num_sequence::square(int pos) {
   }
 }   
   
-void num_sequence::pentagonal(int pos) {
+void NumSequence::pentagonal(int pos) {
   if (pos <= 0 || pos > max_seq)
     return;
 

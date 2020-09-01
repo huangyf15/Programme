@@ -11,11 +11,11 @@
 
 using namespace std;
 
-class num_sequence {
+class NumSequence {
  public:
   // typedef related
   typedef vector<unsigned int>::iterator iterator;
-  typedef void (num_sequence::*PtrType) (int);
+  typedef void (NumSequence::*PtrType) (int);
 
   // ns_type related (_pmf addresses one of these)
   void fibonacci(int);
@@ -105,23 +105,23 @@ class num_sequence {
    * Note: do not need a copy constructor, copy assignment operator
    *       or a destructor for the num-sequence class ...
    */
-  num_sequence(int beg_pos = 1, int len = 1, ns_type nst = ns_unset) {	
+  NumSequence(int beg_pos = 1, int len = 1, ns_type nst = ns_unset) {	
     set_position(beg_pos);
     set_length(len);
     set_sequence(nst);
   }
 
   // operator overloaded
-  bool operator == (const num_sequence &rhs) const {
+  bool operator == (const NumSequence &rhs) const {
     return (_beg_pos == rhs._beg_pos) && (_length  == rhs._length);
   }
 
-  bool operator != (const num_sequence &rhs) const {
+  bool operator != (const NumSequence &rhs) const {
     return !(*this == rhs);
   }
 
-  num_sequence operator + (const num_sequence &rhs) {
-    return num_sequence(_beg_pos < rhs._beg_pos ? _beg_pos : rhs._beg_pos,
+  NumSequence operator + (const NumSequence &rhs) {
+    return NumSequence(_beg_pos < rhs._beg_pos ? _beg_pos : rhs._beg_pos,
                         _length + rhs._length,
                         _isa == rhs._isa ? _isa : ns_unset );
   }
@@ -140,7 +140,7 @@ class num_sequence {
     if (pos > _elem->size()) {
       cout << "Check_integrity: calculating " << pos - _elem->size()
            << " additional elements\n";
-      (const_cast<num_sequence *>(this)->*_pmf)(pos);
+      (const_cast<NumSequence *>(this)->*_pmf)(pos);
     }
     return true;
   }
@@ -208,12 +208,12 @@ class num_sequence {
   static map<string,ns_type> seq_map;
 };
 
-inline void display(ostream &os, const num_sequence &ns, int pos, int elem_val) {
+inline void display(ostream &os, const NumSequence &ns, int pos, int elem_val) {
   os << "The element at position " << pos 
      << " for the " << ns.seq_name() 
      << " sequence is " << elem_val << endl;
 }
 
-ostream &operator << (ostream &, const num_sequence &);
+ostream &operator << (ostream &, const NumSequence &);
 
 #endif

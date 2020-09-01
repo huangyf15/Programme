@@ -14,7 +14,7 @@
 
 * Declaration vs Definition
 * Compiler and Linker
-  * `#include`/`#define`/`#if`/`ifdef`/`#ifndef`/`endif`/`pragma`
+  * `#include`/`#define`/`#if`/`#ifdef`/`#ifndef`/`#endif`/`#pragma`
   * any separate obj file is called a "translation unit"
 * Header file
 

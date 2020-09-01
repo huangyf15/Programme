@@ -8,10 +8,10 @@ ostream &operator << (ostream &os, const vector<T> &vec) {
 }
 
 int main() {
-  num_sequence ns(1,11);
+  NumSequence ns(1,11);
   const int pos = 7;
-  for (int ix = 1; ix < num_sequence::num_of_sequence(); ++ix) {
-    ns.set_sequence(num_sequence::ns_type(ix));
+  for (int ix = 1; ix < NumSequence::num_of_sequence(); ++ix) {
+    ns.set_sequence(NumSequence::ns_type(ix));
     int elem_val = ns.elem(pos);
     display(cout, ns, pos, elem_val);
     cout << ns << endl;
