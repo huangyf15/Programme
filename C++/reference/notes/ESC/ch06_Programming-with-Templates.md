@@ -15,6 +15,7 @@
 
 * `binary_tree`：基于类模板与简单的函数模板实现二叉树
 * `cal_seq_Cori_Tbased`：基于抽象基类指针的多态（采用类模板）
+* `less_than_Tbased`：函数对象的实现（采用类模板）
 
 ### 注意事项
 
