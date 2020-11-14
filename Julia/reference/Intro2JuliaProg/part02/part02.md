@@ -1,6 +1,6 @@
 # Part 02: Structure
 
-> Last updated: 5, 6.1-6.5, 7
+> Last updated: 5, 6.1-6.5, 7, 10
 
 ## Ch 05: 控制逻辑
 
@@ -72,5 +72,33 @@
 
 
 ## Ch 10: 元编程
+
+* 元编程（Meta-programming）是指，某个语言可以将其它语言作为内部可操作的对象，从而能在运行期动态生成代码片段（也成为元程序），巧妙地实现一些功能。其中，编写元程序的语言被称为元语言，被操作语言为目标语言，以自身为目标语言的能力被称为反射。
+* Symbol 类型与 Expr 类型
+  * `Julia` 能够自动识别某个被标识的表达式或其结构单元是否可执行，并创建对应的类型
+  * 以 `Expr` 类型将反复使用的代码片段或者需要灵活组装的执行过程进行封装，能够让程序具备代码衍生能力，可以对一些计算过程复制转移、赋值比较或递归生成，实现各种巧妙的元程序设计
+  ```julia
+  function derive(op, op1, op2)
+    expr = Expr(:call, op, op1, op2)
+  end
+
+  ex = derive(:=, :(1), Expr(:call, :*, 4, 5))
+
+  for op = (:+, :*, :&, :|, :$)
+    @eval ($op)(a,b,c) = ($op)(($op)(a,b),c)
+  end
+  ```
+* 宏的定义与调用
+  ```julia
+  # 定义
+  macro sayhello(name)
+    return :(println("Hello, ", $name))  # name 前要使用 $ 标识为变量
+  end
+
+  # 调用
+  @sayhello("human")
+
+  @sayhello "human"
+  ```
 
 ## Ch 13: 组织结构
