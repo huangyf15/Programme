@@ -2,7 +2,7 @@
 
 ## File Structure
 
-  * `courses`：Julia 课程相关
+  * `project`：Julia 项目相关
   * `reference`：Julia 参考材料相关
     * `Intro2JuliaProg`
       * Part 01: Basics (Chapter 01-04)
