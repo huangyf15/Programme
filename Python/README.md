@@ -2,8 +2,9 @@
 
 ## File Structure
 
-* `1_simulator`: CFD/DDS/FEM
-* `2_algorithm`: Numerical Analysis
+* `project`: Python projects
+  * `1_simulator`: CFD/DDS/FEM
+  * `2_algorithm`: Numerical Analysis
 * `courses`: Python courses
 
 ## Dependencies
