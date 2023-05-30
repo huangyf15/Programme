@@ -1,0 +1,6 @@
+.vscode
+*.xls
+*.xlsx
+*.asv
+*.fig
+*.mat
