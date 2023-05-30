@@ -1,6 +1,5 @@
 #!/bin/bash
-make cleanall
-make mod
+make realclean
 make
 ./bin/helloWorld
-make cleanall
+make realclean
