@@ -1,0 +1,21 @@
+fail_fast: false
+repos:
+-   repo: https://gitee.com/tangzk/pre-commit-hooks.git
+    rev: v4.0.1
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-symlinks
+    -   id: end-of-file-fixer
+    -   id: mixed-line-ending 
+        args:
+        - --fix=auto
+-   repo: https://gitee.com/yangguangthu/mirrors-clang-format.git
+    rev: v13.0.0
+    hooks:
+    -   id: clang-format
+-   repo: https://gitee.com/rgbitx/cpplint.git
+    rev: master
+    hooks:
+    -   id: cpplint
+        args:
+        - --verbose=0

@@ -1,0 +1,19 @@
+fail_fast: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+    - id: check-added-large-files
+    - id: check-symlinks
+    - id: end-of-file-fixer
+    - id: mixed-line-ending
+      args:
+        - --fix=auto
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v13.0.0
+    hooks:
+    - id: clang-format
+  - repo: https://github.com/cpplint/cpplint
+    rev: master
+    hooks:
+    - id: cpplint

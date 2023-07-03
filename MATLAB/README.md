@@ -4,20 +4,21 @@
 
 ## Structure
 
-* 1_features
+* `course`
   * `mex`: MATLAB-C/C++ mixed programming
   * `OOP`: MATLAB object-oriented programming
-* 2_algorithm
-  * `AFD/FSTXX`: basic ODEs solvers
-  * `NAXX`: basic numerical algorithms
-  * `FEMXX`: stiffness matrix generator
-* 3_postproc
-  * `FMXX`: fluid mechanics
-  * `PhyXX`: physical experiment
-  * `RwXX`: reaction momentum wheel
-  * `SMXX`: solid mechanics
-  * `SPXX`: solid state physics
-  * `VFDXX`: viscous fluid dynamics
+* `project`
+  * `1_algorithm`
+    * `AFD/FSTXX`: basic ODEs solvers
+    * `NAXX`: basic numerical algorithms
+    * `FEMXX`: stiffness matrix generator
+  * `2_postproc`
+    * `FMXX`: fluid mechanics
+    * `PhyXX`: physical experiment
+    * `RwXX`: reaction momentum wheel
+    * `SMXX`: solid mechanics
+    * `SPXX`: solid state physics
+    * `VFDXX`: viscous fluid dynamics
 
 ## ChangeLog
 
