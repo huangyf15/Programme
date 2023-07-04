@@ -1,9 +1,7 @@
-# SysProg
+# Programme
 
 > First established: 2020.07.28
 
-Templates, demos and examples for system tools and programming languages
+Templates, demos and examples for programming languages
 
-* System: `Linux`, `vim`, `shell` basics
-
-* Language: `C++`, `Fortran`, `Julia`, `MATLAB`, `Python`
+* `C++`, `Fortran`, `Julia`, `MATLAB`, `Python`

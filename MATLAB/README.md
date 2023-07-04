@@ -1,10 +1,10 @@
 # MATLAB
 
-> Last Updated: 2023.05.31
+> Last Updated: 2023.07.04
 
 ## Structure
 
-* `course`
+* `demos`
   * `mex`: MATLAB-C/C++ mixed programming
   * `OOP`: MATLAB object-oriented programming
 * `project`

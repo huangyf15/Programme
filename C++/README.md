@@ -2,8 +2,7 @@
 
 ## File Structure
 
-* `courses`：C++ 课程相关
-* `reference`：C++ 参考材料相关
+* `demos`：C++ 课程相关
 * `template`：示例用的项目文件夹（典型文件结构如下）
   * `src`：存放源代码
     * `h`：存放头文件

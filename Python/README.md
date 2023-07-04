@@ -2,10 +2,9 @@
 
 ## File Structure
 
+* 
+* `demos`: Python courses
 * `project`: Python projects
-  * `1_simulator`: CFD/DDS/FEM
-  * `2_algorithm`: Numerical Analysis
-* `courses`: Python courses
 
 ## Dependencies
 
@@ -24,7 +23,7 @@
 
 载入上述模块的常用代码如下
 
-``` python
+```python
 # import NumPy
 import numpy as np
 
