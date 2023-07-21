@@ -10,7 +10,7 @@
 
 #### lint
 
-+   使用 git 进行版本控制。代码托管优先选用 [coding.net](https://coding.net/) 和 [gitee.com]，其次选用 [gitlab.com](https://about.gitlab.com/) 和 [github.com](https://github.com/)
++   使用 git 进行版本控制。代码托管优先 [coding.net](https://coding.net/) 和 [gitee.com](https://gitee.com/)，其次 [gitlab.com](https://about.gitlab.com/) 和 [github.com](https://github.com/)
 
 +   编辑器推荐使用 Visual Studio Code 软件，辅以相应插件。严禁使用记事本。
 
