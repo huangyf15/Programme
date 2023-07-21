@@ -1,0 +1,15 @@
+[alias]
+	ck = checkout
+	st = status
+	cm = commit
+	ad = add
+	br = branch
+	last = log -1 HEAD
+[user]
+	email = 1466879176@qq.com
+	name = huangyf15
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
